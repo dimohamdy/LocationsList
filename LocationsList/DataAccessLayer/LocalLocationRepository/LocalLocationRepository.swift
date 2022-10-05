@@ -1,5 +1,5 @@
 //
-//  SearchHistory.swift
+//  LocalLocationRepository.swift
 //  LocationsList
 //
 //  Created by Dimo Abdelaziz on 30/09/2022.

@@ -1,0 +1,26 @@
+//
+//  Localizable.strings
+//  LocationsList
+//
+//  Created by Dimo Abdelaziz on 30/09/2022.
+//
+
+// MARK: Errors
+"Common_GeneralError" = "There was an error";
+"Common_InternetError" = "No internet connection";
+
+// MARK: Home Screen
+"Location_Title" = "Location";
+
+// MARK: Internet Errors
+"No_Internet_Connection_Title" = "No internet connection";
+"No_Internet_Connection_Subtitle" = "Please check your internet connection and try again.";
+
+// MARK: Locations Errors
+"No_Locations_Error_Title" = "No Locations";
+"No_Locations_Error_Subtitle" = "Please, try again later";
+
+
+"Try_Action" = "Try again";
+
+

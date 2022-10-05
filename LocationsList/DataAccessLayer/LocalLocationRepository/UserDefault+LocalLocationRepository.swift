@@ -17,7 +17,7 @@ final class UserDefaultLocalLocationRepository: LocalLocationRepository {
         locations = getLocations()
     }
     
-    func clearSearchHistory() -> [String] {
+    func clearLocations() -> [String] {
         UserDefaults.standard.removeObject(forKey: UserDefaultsKey.Locations.rawValue)
         return []
     }
