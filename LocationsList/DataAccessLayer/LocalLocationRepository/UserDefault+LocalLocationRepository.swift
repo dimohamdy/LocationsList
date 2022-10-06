@@ -9,7 +9,13 @@ import Foundation
 
 final class UserDefaultLocalLocationRepository: LocalLocationRepository {
 
-    private var locations: [Location] = []
+    weak var delegate: LocalLocationRepositoryUpdate?
+
+    private var locations: [Location] = [] {
+        didSet {
+            delegate?.updated(localLocations: locations)
+        }
+    }
 
     static let shared = UserDefaultLocalLocationRepository()
     

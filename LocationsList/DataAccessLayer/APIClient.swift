@@ -8,21 +8,14 @@
 import Foundation
 import UIKit
 
-// MARK: - DataTask
-protocol URLSessionDataTaskProtocol {
-    func resume()
-}
-
-extension URLSessionDataTask: URLSessionDataTaskProtocol {}
-
 // MARK: - URLSession
 protocol URLSessionProtocol {
-    func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskProtocol
+    func data(with url: URL) async throws -> (Data, URLResponse)
 }
 
 extension URLSession: URLSessionProtocol {
-    func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskProtocol {
-        return (dataTask(with: url, completionHandler: completionHandler) as URLSessionDataTask) as URLSessionDataTaskProtocol
+    func data(with url: URL) async throws -> (Data, URLResponse) {
+        return try await data(from: url)
     }
 }
 
@@ -33,7 +26,7 @@ final class APIClient {
     }
 
     func loadData<T: Decodable>(from url: URL) async throws -> T {
-        let (data, response) = try await URLSession.shared.data(from: url)
+        let (data, response) = try await session.data(with: url)
         guard let httpResponse = response as? HTTPURLResponse,
             httpResponse.statusCode == 200 else {
             throw LocationsListError.invalidServerResponse
