@@ -28,7 +28,7 @@ struct Location: Codable, Equatable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         lat = try values.decode(Double.self, forKey: .lat)
         long = try values.decode(Double.self, forKey: .long)
-        name = try values.decodeIfPresent(String.self, forKey: .name) ?? "lat:\(lat), long:\(long)"
+        name = try values.decodeIfPresent(String.self, forKey: .name) ?? "\(Strings.latitude.localized()):\(lat), \(Strings.longitude.localized()):\(long)"
     }
 
     init(name: String,lat: Double, long: Double) {

@@ -10,7 +10,8 @@
 "Common_InternetError" = "No internet connection";
 
 // MARK: Home Screen
-"Location_Title" = "Location";
+"Location_List_Title" = "Locations List";
+"Add_Location_Title" = "Add Locations";
 
 // MARK: Internet Errors
 "No_Internet_Connection_Title" = "No internet connection";
@@ -20,7 +21,14 @@
 "No_Locations_Error_Title" = "No Locations";
 "No_Locations_Error_Subtitle" = "Please, try again later";
 
+"Latitude" = "Latitude";
+"Longitude" = "Longitude";
 
 "Try_Action" = "Try again";
+
+"Wrong_Data" = "Wrong Data";
+
+"Check_Value_Latitude" = "Please check the value latitude";
+"Check_Value_Longitude" = "Please check the value longitude";
 
 

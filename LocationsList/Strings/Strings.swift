@@ -14,7 +14,8 @@ enum Strings: String {
     case commonInternetError = "Common_InternetError"
 
     // MARK: Location
-    case locationTitle = "Location_Title"
+    case locationListTitle = "Location_List_Title"
+    case addLocationTitle = "Add_Location_Title"
 
     // MARK: Internet Errors
     case noInternetConnectionTitle = "No_Internet_Connection_Title"
@@ -30,6 +31,15 @@ enum Strings: String {
     case localTitle = "Local_Title"
 
     case tryAction = "Try_Action"
+
+    case latitude = "Latitude"
+    case longitude = "Longitude"
+
+    case wrongData = "Wrong_Data"
+
+    case checkValueLatitude = "Check_Value_Latitude"
+
+    case checkValueLongitude = "Check_Value_Longitude"
 
     func localized() -> String {
         return NSLocalizedString(self.rawValue, comment: "")
