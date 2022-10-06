@@ -65,7 +65,7 @@ final class LocationsListViewController: UIViewController {
 
     private func configureNavigationBar() {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
-        navigationItem.title = Strings.locationTitle.localized()
+        navigationItem.title = Strings.locationListTitle.localized()
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = UIColor.systemBackground
         appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
@@ -115,7 +115,7 @@ extension LocationsListViewController: LocationsListPresenterOutput {
     func emptyState(emptyPlaceHolderType: EmptyPlaceHolderType) {
         clearCollection()
         locationsTableView.setEmptyView(emptyPlaceHolderType: emptyPlaceHolderType, completionBlock: { [weak self] in
-            // hello world
+            self?.presenter?.getLocation()
         })
     }
 
@@ -142,6 +142,5 @@ extension LocationsListViewController: LocationsListPresenterOutput {
             self.locationsTableView.reloadData()
 
         }
-
     }
 }

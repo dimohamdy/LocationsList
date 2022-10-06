@@ -24,10 +24,12 @@ final class LocationsListPresenter {
     // MARK: Injections
     private weak var output: LocationsListPresenterOutput?
     let locationsRepository: WebLocationsRepository
-    let localLocationRepository: LocalLocationRepository
+    var localLocationRepository: LocalLocationRepository
 
     // internal
-    private var locationsSections: [ItemTableViewCellType] = [ItemTableViewCellType]()
+
+    private var onlineLocations: [Location] = []
+    private var localLocations: [Location] = []
 
     // MARK: Init
     init(output: LocationsListPresenterOutput,
@@ -37,10 +39,13 @@ final class LocationsListPresenter {
         self.output = output
         self.locationsRepository = locationsRepository
         self.localLocationRepository = localLocationRepository
-        
+
+        self.localLocationRepository.delegate = self
+
         [Notifications.Reachability.connected.name, Notifications.Reachability.notConnected.name].forEach { (notification) in
             NotificationCenter.default.addObserver(self, selector: #selector(changeInternetConnection), name: notification, object: nil)
         }
+
     }
 }
 
@@ -50,7 +55,7 @@ extension LocationsListPresenter: LocationsListPresenterInput {
     func open(location: Location) {
         let location = "wikipedia://location?latitude=\(location.lat)&longitude=\(location.long)"
 
-        if let wikipediaURL = URL(string: location), UIApplication.shared.canOpenURL(wikipediaURL) {
+        if let wikipediaURL = URL(string: location) {
             UIApplication.shared.open(wikipediaURL)
         }
     }
@@ -63,21 +68,12 @@ extension LocationsListPresenter: LocationsListPresenterInput {
 
         output?.showLoading()
         Task {
-            locationsSections = []
             do {
-                let onlineLocations = try await locationsRepository.getLocations()
-                if !onlineLocations.isEmpty {
-                    let temp1 = ItemTableViewCellType.online(locations: onlineLocations)
-                    locationsSections.append(temp1)
-                }
+                onlineLocations = try await locationsRepository.getLocations()
+                localLocations = try await localLocationRepository.getLocations()
 
-                let localLocations = try await localLocationRepository.getLocations()
-                if !localLocations.isEmpty {
-                    let temp2 = ItemTableViewCellType.online(locations: localLocations)
-                    locationsSections.append(temp2)
-                }
+                let locationsSections = prepareData(onlineLocations: onlineLocations, localLocations: localLocations)
                 output?.hideLoading()
-
 
                 if locationsSections.isEmpty {
                     output?.updateData(error: LocationsListError.noResults)
@@ -85,10 +81,8 @@ extension LocationsListPresenter: LocationsListPresenterInput {
                     output?.updateData(itemsForTable: locationsSections)
                 }
 
-
             } catch let error {
                 output?.updateData(error: error)
-
             }
         }
     }
@@ -101,4 +95,21 @@ extension LocationsListPresenter: LocationsListPresenterInput {
         }
     }
 
+    func prepareData(onlineLocations: [Location], localLocations: [Location]) -> [ItemTableViewCellType] {
+        var locationsSections: [ItemTableViewCellType] = [ItemTableViewCellType]()
+        if !onlineLocations.isEmpty {
+            locationsSections.append(ItemTableViewCellType.online(locations: onlineLocations))
+        }
+        if !localLocations.isEmpty {
+            locationsSections.append(ItemTableViewCellType.online(locations: localLocations))
+        }
+        return locationsSections
+    }
+}
+
+extension LocationsListPresenter: LocalLocationRepositoryUpdate {
+    func updated(localLocations: [Location]) {
+        let locationsSections = prepareData(onlineLocations: onlineLocations, localLocations: localLocations)
+        output?.updateData(itemsForTable: locationsSections)
+    }
 }
