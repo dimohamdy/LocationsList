@@ -8,6 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		33166CB228EA384D000ACD6B /* LocationsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33166CB128EA384D000ACD6B /* LocationsListRouter.swift */; };
+		333AF57728EE21D600CED93E /* WebPhotosRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF56728EE21D500CED93E /* WebPhotosRepositoryTests.swift */; };
+		333AF57828EE21D600CED93E /* EmptyPlaceHolderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF56828EE21D500CED93E /* EmptyPlaceHolderViewTests.swift */; };
+		333AF57928EE21D600CED93E /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 333AF56A28EE21D600CED93E /* data.json */; };
+		333AF57A28EE21D600CED93E /* noData.json in Resources */ = {isa = PBXBuildFile; fileRef = 333AF56B28EE21D600CED93E /* noData.json */; };
+		333AF57B28EE21D600CED93E /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF56C28EE21D600CED93E /* DataLoader.swift */; };
+		333AF57C28EE21D600CED93E /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF56D28EE21D600CED93E /* LocationTests.swift */; };
+		333AF57D28EE21D600CED93E /* UserDefaultLocalLocationRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF56E28EE21D600CED93E /* UserDefaultLocalLocationRepositoryTests.swift */; };
+		333AF57E28EE21D600CED93E /* UIView+LoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF56F28EE21D600CED93E /* UIView+LoadingTests.swift */; };
+		333AF57F28EE21D600CED93E /* PhotosListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF57028EE21D600CED93E /* PhotosListPresenterTests.swift */; };
+		333AF58028EE21D600CED93E /* PhotosListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF57128EE21D600CED93E /* PhotosListViewControllerTests.swift */; };
+		333AF58128EE21D600CED93E /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF57228EE21D600CED93E /* NetworkTests.swift */; };
+		333AF58228EE21D600CED93E /* NetworkMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF57428EE21D600CED93E /* NetworkMock.swift */; };
+		333AF58328EE21D600CED93E /* MockReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF57528EE21D600CED93E /* MockReachability.swift */; };
 		3397E2B528EA11C600B35755 /* AddLocationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397E2AE28EA11C500B35755 /* AddLocationBuilder.swift */; };
 		3397E2B628EA11C600B35755 /* AddLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397E2AF28EA11C500B35755 /* AddLocationPresenter.swift */; };
 		3397E2B728EA11C600B35755 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397E2B028EA11C500B35755 /* AddLocationViewController.swift */; };
@@ -15,7 +28,6 @@
 		33CE0A7F28E74D2600B6DC46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0A7E28E74D2600B6DC46 /* SceneDelegate.swift */; };
 		33CE0A8628E74D2800B6DC46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33CE0A8528E74D2800B6DC46 /* Assets.xcassets */; };
 		33CE0A8928E74D2800B6DC46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33CE0A8728E74D2800B6DC46 /* LaunchScreen.storyboard */; };
-		33CE0A9428E74D2900B6DC46 /* LocationsListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0A9328E74D2900B6DC46 /* LocationsListTests.swift */; };
 		33CE0A9E28E74D2900B6DC46 /* LocationsListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0A9D28E74D2900B6DC46 /* LocationsListUITests.swift */; };
 		33CE0AA028E74D2900B6DC46 /* LocationsListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0A9F28E74D2900B6DC46 /* LocationsListUITestsLaunchTests.swift */; };
 		33CE0AAF28E74D9B00B6DC46 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0AAD28E74D9B00B6DC46 /* Strings.swift */; };
@@ -66,6 +78,19 @@
 
 /* Begin PBXFileReference section */
 		33166CB128EA384D000ACD6B /* LocationsListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsListRouter.swift; sourceTree = "<group>"; };
+		333AF56728EE21D500CED93E /* WebPhotosRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPhotosRepositoryTests.swift; sourceTree = "<group>"; };
+		333AF56828EE21D500CED93E /* EmptyPlaceHolderViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyPlaceHolderViewTests.swift; sourceTree = "<group>"; };
+		333AF56A28EE21D600CED93E /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		333AF56B28EE21D600CED93E /* noData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = noData.json; sourceTree = "<group>"; };
+		333AF56C28EE21D600CED93E /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		333AF56D28EE21D600CED93E /* LocationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
+		333AF56E28EE21D600CED93E /* UserDefaultLocalLocationRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultLocalLocationRepositoryTests.swift; sourceTree = "<group>"; };
+		333AF56F28EE21D600CED93E /* UIView+LoadingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+LoadingTests.swift"; sourceTree = "<group>"; };
+		333AF57028EE21D600CED93E /* PhotosListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosListPresenterTests.swift; sourceTree = "<group>"; };
+		333AF57128EE21D600CED93E /* PhotosListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosListViewControllerTests.swift; sourceTree = "<group>"; };
+		333AF57228EE21D600CED93E /* NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
+		333AF57428EE21D600CED93E /* NetworkMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMock.swift; sourceTree = "<group>"; };
+		333AF57528EE21D600CED93E /* MockReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockReachability.swift; sourceTree = "<group>"; };
 		3397E2AE28EA11C500B35755 /* AddLocationBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationBuilder.swift; sourceTree = "<group>"; };
 		3397E2AF28EA11C500B35755 /* AddLocationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationPresenter.swift; sourceTree = "<group>"; };
 		3397E2B028EA11C500B35755 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
@@ -76,7 +101,6 @@
 		33CE0A8828E74D2800B6DC46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33CE0A8A28E74D2800B6DC46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33CE0A8F28E74D2900B6DC46 /* LocationsListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationsListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		33CE0A9328E74D2900B6DC46 /* LocationsListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListTests.swift; sourceTree = "<group>"; };
 		33CE0A9928E74D2900B6DC46 /* LocationsListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationsListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33CE0A9D28E74D2900B6DC46 /* LocationsListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListUITests.swift; sourceTree = "<group>"; };
 		33CE0A9F28E74D2900B6DC46 /* LocationsListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -134,6 +158,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		333AF56928EE21D600CED93E /* DataLoader */ = {
+			isa = PBXGroup;
+			children = (
+				333AF56A28EE21D600CED93E /* data.json */,
+				333AF56B28EE21D600CED93E /* noData.json */,
+				333AF56C28EE21D600CED93E /* DataLoader.swift */,
+			);
+			path = DataLoader;
+			sourceTree = "<group>";
+		};
+		333AF57328EE21D600CED93E /* Mocker */ = {
+			isa = PBXGroup;
+			children = (
+				333AF57428EE21D600CED93E /* NetworkMock.swift */,
+				333AF57528EE21D600CED93E /* MockReachability.swift */,
+			);
+			path = Mocker;
+			sourceTree = "<group>";
+		};
 		3397E2A728EA11C500B35755 /* AddLocation */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,7 +230,16 @@
 		33CE0A9228E74D2900B6DC46 /* LocationsListTests */ = {
 			isa = PBXGroup;
 			children = (
-				33CE0A9328E74D2900B6DC46 /* LocationsListTests.swift */,
+				333AF56928EE21D600CED93E /* DataLoader */,
+				333AF57328EE21D600CED93E /* Mocker */,
+				333AF56828EE21D500CED93E /* EmptyPlaceHolderViewTests.swift */,
+				333AF57228EE21D600CED93E /* NetworkTests.swift */,
+				333AF57028EE21D600CED93E /* PhotosListPresenterTests.swift */,
+				333AF57128EE21D600CED93E /* PhotosListViewControllerTests.swift */,
+				333AF56D28EE21D600CED93E /* LocationTests.swift */,
+				333AF56F28EE21D600CED93E /* UIView+LoadingTests.swift */,
+				333AF56E28EE21D600CED93E /* UserDefaultLocalLocationRepositoryTests.swift */,
+				333AF56728EE21D500CED93E /* WebPhotosRepositoryTests.swift */,
 			);
 			path = LocationsListTests;
 			sourceTree = "<group>";
@@ -445,6 +497,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				333AF57A28EE21D600CED93E /* noData.json in Resources */,
+				333AF57928EE21D600CED93E /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,7 +554,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33CE0A9428E74D2900B6DC46 /* LocationsListTests.swift in Sources */,
+				333AF58328EE21D600CED93E /* MockReachability.swift in Sources */,
+				333AF57B28EE21D600CED93E /* DataLoader.swift in Sources */,
+				333AF57E28EE21D600CED93E /* UIView+LoadingTests.swift in Sources */,
+				333AF58128EE21D600CED93E /* NetworkTests.swift in Sources */,
+				333AF58228EE21D600CED93E /* NetworkMock.swift in Sources */,
+				333AF57D28EE21D600CED93E /* UserDefaultLocalLocationRepositoryTests.swift in Sources */,
+				333AF57828EE21D600CED93E /* EmptyPlaceHolderViewTests.swift in Sources */,
+				333AF57C28EE21D600CED93E /* LocationTests.swift in Sources */,
+				333AF58028EE21D600CED93E /* PhotosListViewControllerTests.swift in Sources */,
+				333AF57F28EE21D600CED93E /* PhotosListPresenterTests.swift in Sources */,
+				333AF57728EE21D600CED93E /* WebPhotosRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
