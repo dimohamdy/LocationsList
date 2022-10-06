@@ -73,9 +73,9 @@ final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITab
         let section = itemsForTable[section]
         switch section {
         case .online:
-            headerCell.headerLabel.text = "Online"
+            headerCell.headerLabel.text = Strings.onlineTitle.localized()
         case .local :
-            headerCell.headerLabel.text = "Local"
+            headerCell.headerLabel.text = Strings.localTitle.localized()
         }
 
         return headerCell

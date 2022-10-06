@@ -101,7 +101,7 @@ extension LocationsListPresenter: LocationsListPresenterInput {
             locationsSections.append(ItemTableViewCellType.online(locations: onlineLocations))
         }
         if !localLocations.isEmpty {
-            locationsSections.append(ItemTableViewCellType.online(locations: localLocations))
+            locationsSections.append(ItemTableViewCellType.local(locations: localLocations))
         }
         return locationsSections
     }
