@@ -53,14 +53,6 @@ final class AddLocationViewController: UIViewController {
         return textField
     }()
 
-    let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis  = .vertical
@@ -84,20 +76,12 @@ final class AddLocationViewController: UIViewController {
     
     // MARK: - Setup UI
     private func setupUI() {
-//        view.addSubview(locationNameTextField)
-//        NSLayoutConstraint.activate([
-//            locationNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-//            locationNameTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-//            locationNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-//            locationNameTextField.heightAnchor.constraint(equalToConstant: 50)
-//        ])
-//        view.backgroundColor = .systemBackground
 
         [locationNameTextField, latitudeTextField, longitudeTextField].forEach {
             $0.delegate = self
             stackView.addArrangedSubview($0)
         }
-//        scrollView.addSubview(stackView)
+
         view.addSubview((stackView))
 
         view.backgroundColor = .systemBackground
@@ -105,39 +89,25 @@ final class AddLocationViewController: UIViewController {
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
         ])
-
-//        NSLayoutConstraint.activate([
-//            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-//            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-//            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
-//            stackView.heightAnchor.constraint(equalToConstant: 200),
-////            stackView.widthAnchor.constraint(equalToConstant: 300)
-//
-//        ])
-
-
-
-
-        scrollView.backgroundColor = .blue
     }
 
     private func configureNavigationBar() {
-//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
-//        navigationItem.title = Strings.locationTitle.localized()
-//        let appearance = UINavigationBarAppearance()
-//        appearance.backgroundColor = UIColor.systemBackground
-//        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
-//        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
-//        appearance.shadowColor = .clear
-//        appearance.shadowImage = UIImage()
-//
-//        navigationController?.navigationBar.tintColor = .white
-//        navigationController?.navigationBar.standardAppearance = appearance
-//        navigationController?.navigationBar.compactAppearance = appearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-//        navigationController?.hidesBarsOnSwipe = true
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
+        navigationItem.title = Strings.addLocationTitle.localized()
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor.systemBackground
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.shadowColor = .clear
+        appearance.shadowImage = UIImage()
+
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.hidesBarsOnSwipe = true
 
         let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveLocation))
         let cancelButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTodoItem))
@@ -159,12 +129,22 @@ final class AddLocationViewController: UIViewController {
             locationValue = locationName
         }
 
-        if let latitude = Double(latitudeTextField.text ?? "") {
+        // Validate long and lat https://stackoverflow.com/a/7780993/3806350
+
+        // Validate latitude value
+        let latitudeRange = -90.0 ... 90.0
+        if let latitude = Double(latitudeTextField.text ?? ""), latitudeRange.contains(latitude)  {
             latitudeValue = latitude
+        }else {
+            showError(title: Strings.wrongData.localized(), subtitle: Strings.checkValueLatitude.localized())
         }
 
-        if let longitude = Double(longitudeTextField.text ?? "") {
+        // Validate longitude value
+        let longitudeRange = -180.0 ... 180.0
+        if let longitude = Double(longitudeTextField.text ?? ""), longitudeRange.contains(longitude) {
             longitudeValue = longitude
+        } else {
+            showError(title: Strings.wrongData.localized(), subtitle:  Strings.checkValueLongitude.localized())
         }
 
         if let locationValue ,let latitudeValue, let longitudeValue {
@@ -195,24 +175,8 @@ extension AddLocationViewController: UITextFieldDelegate {
             latitudeTextField.becomeFirstResponder()
         case latitudeTextField:
             longitudeTextField.becomeFirstResponder()
-        case longitudeTextField:
-            break
-            // Validate Text Field
-            //            let (valid, message) = validate(textField)
-            //
-            //            if valid {
-            //                emailTextField.becomeFirstResponder()
-            //            }
-            //
-            //            // Update Password Validation Label
-            //            self.passwordValidationLabel.text = message
-            //
-            //            // Show/Hide Password Validation Label
-            //            UIView.animate(withDuration: 0.25, animations: {
-            //                self.passwordValidationLabel.isHidden = valid
-            //            })
         default:
-            locationNameTextField.resignFirstResponder()
+            break
         }
 
         return true

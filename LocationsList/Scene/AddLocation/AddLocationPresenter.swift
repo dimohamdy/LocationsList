@@ -39,7 +39,5 @@ extension AddLocationPresenter: AddLocationPresenterInput {
     func add(location: Location) {
         localLocationRepository.save(location: location)
         output?.addLocation(success: true)
-
     }
-
 }
