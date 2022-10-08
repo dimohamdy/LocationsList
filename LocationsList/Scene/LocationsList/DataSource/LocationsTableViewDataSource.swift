@@ -8,7 +8,7 @@
 import UIKit
 
 final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
-    var itemsForTable: [ItemTableViewCellType] = []
+    var tableSections: [TableViewSectionType] = []
     
     weak var presenterInput: LocationsListPresenterInput?
     
@@ -17,19 +17,19 @@ final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITab
         static let heightOfHistoryHeader: CGFloat = 50
     }
     
-    init(presenterInput: LocationsListPresenterInput?, itemsForTable: [ItemTableViewCellType]) {
-        self.itemsForTable = itemsForTable
+    init(presenterInput: LocationsListPresenterInput?, tableSections: [TableViewSectionType]) {
+        self.tableSections = tableSections
         self.presenterInput = presenterInput
     }
     
     // MARK: - UITableView view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return itemsForTable.count
+        return tableSections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = itemsForTable[section]
+        let section = tableSections[section]
         switch section {
         case .online(let locations), .local(let locations):
             return locations.count
@@ -38,7 +38,7 @@ final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = itemsForTable[indexPath.section]
+        let section = tableSections[indexPath.section]
         switch section {
         case .online(let locations), .local(let locations):
             if let cell: LocationTableViewCell = tableView.dequeueReusableCell(for: indexPath) {
@@ -51,7 +51,7 @@ final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITab
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = itemsForTable[indexPath.section]
+        let section = tableSections[indexPath.section]
         switch section {
         case .online(let locations), .local(let locations) :
             presenterInput?.open(location: locations[indexPath.row])
@@ -70,7 +70,7 @@ final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITab
         guard let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: GeneralTableHeader.identifier) as? GeneralTableHeader else {
             return nil
         }
-        let section = itemsForTable[section]
+        let section = tableSections[section]
         switch section {
         case .online:
             headerCell.headerLabel.text = Strings.onlineTitle.localized()

@@ -15,7 +15,7 @@ protocol LocationsListPresenterInput: BasePresenterInput {
 
 protocol LocationsListPresenterOutput: BasePresenterOutput {
     func updateData(error: Error)
-    func updateData(itemsForTable: [ItemTableViewCellType])
+    func updateData(tableSections: [TableViewSectionType])
     func emptyState(emptyPlaceHolderType: EmptyPlaceHolderType)
 }
 
@@ -78,7 +78,7 @@ extension LocationsListPresenter: LocationsListPresenterInput {
                 if locationsSections.isEmpty {
                     output?.updateData(error: LocationsListError.noResults)
                 } else {
-                    output?.updateData(itemsForTable: locationsSections)
+                    output?.updateData(tableSections: locationsSections)
                 }
 
             } catch let error {
@@ -95,13 +95,13 @@ extension LocationsListPresenter: LocationsListPresenterInput {
         }
     }
 
-    func prepareData(onlineLocations: [Location], localLocations: [Location]) -> [ItemTableViewCellType] {
-        var locationsSections: [ItemTableViewCellType] = [ItemTableViewCellType]()
+    func prepareData(onlineLocations: [Location], localLocations: [Location]) -> [TableViewSectionType] {
+        var locationsSections: [TableViewSectionType] = [TableViewSectionType]()
         if !onlineLocations.isEmpty {
-            locationsSections.append(ItemTableViewCellType.online(locations: onlineLocations))
+            locationsSections.append(TableViewSectionType.online(locations: onlineLocations))
         }
         if !localLocations.isEmpty {
-            locationsSections.append(ItemTableViewCellType.local(locations: localLocations))
+            locationsSections.append(TableViewSectionType.local(locations: localLocations))
         }
         return locationsSections
     }
@@ -110,6 +110,6 @@ extension LocationsListPresenter: LocationsListPresenterInput {
 extension LocationsListPresenter: LocalLocationRepositoryUpdate {
     func updated(localLocations: [Location]) {
         let locationsSections = prepareData(onlineLocations: onlineLocations, localLocations: localLocations)
-        output?.updateData(itemsForTable: locationsSections)
+        output?.updateData(tableSections: locationsSections)
     }
 }

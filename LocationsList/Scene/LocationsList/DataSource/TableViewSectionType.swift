@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ItemTableViewCellType {
+enum TableViewSectionType {
     case online(locations: [Location])
     case local(locations: [Location])
 }

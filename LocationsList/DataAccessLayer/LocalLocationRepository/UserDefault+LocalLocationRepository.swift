@@ -18,13 +18,15 @@ final class UserDefaultLocalLocationRepository: LocalLocationRepository {
     }
 
     static let shared = UserDefaultLocalLocationRepository()
-    
-    private init() {
+    private let userDefaults: UserDefaults
+
+    init(userDefaults: UserDefaults = UserDefaults.standard) {
+        self.userDefaults = userDefaults
         locations = getLocations()
     }
     
     func clearLocations() -> [String] {
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.Locations.rawValue)
+        userDefaults.removeObject(forKey: UserDefaultsKey.Locations.rawValue)
         return []
     }
 
@@ -45,7 +47,7 @@ final class UserDefaultLocalLocationRepository: LocalLocationRepository {
     }
 
     private func load() {
-        guard let data = UserDefaults.standard.data(forKey:  UserDefaultsKey.Locations.rawValue),
+        guard let data = userDefaults.data(forKey:  UserDefaultsKey.Locations.rawValue),
               let savedLocations = try? JSONDecoder().decode([Location].self, from: data) else { locations = []; return }
         locations = savedLocations
     }
@@ -53,7 +55,7 @@ final class UserDefaultLocalLocationRepository: LocalLocationRepository {
     private func save() {
         do {
             let data = try JSONEncoder().encode(locations)
-            UserDefaults.standard.set(data, forKey:  UserDefaultsKey.Locations.rawValue)
+            userDefaults.set(data, forKey:  UserDefaultsKey.Locations.rawValue)
         } catch {
             print(error)
         }

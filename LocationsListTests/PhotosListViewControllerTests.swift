@@ -12,11 +12,15 @@ import XCTest
 final class LocationsListViewControllerTests: XCTestCase {
     var locationsListViewController: LocationsListViewController!
     var localLocationRepository: UserDefaultLocalLocationRepository!
+    private var userDefaults: UserDefaults!
+
     override func setUp() {
         super.setUp()
-        locationsListViewController =  LocationsListBuilder.viewController()
-        localLocationRepository = UserDefaultLocalLocationRepository.shared
-        
+        userDefaults = UserDefaults(suiteName: #file)
+        userDefaults.removePersistentDomain(forName: #file)
+        localLocationRepository = UserDefaultLocalLocationRepository(userDefaults: userDefaults)
+
+        locationsListViewController =  LocationsListBuilder.viewController()        
         // Arrange: setup UINavigationController
         let keyWindow = UIApplication.shared.connectedScenes
             .filter({$0.activationState == .foregroundActive})
@@ -38,7 +42,9 @@ final class LocationsListViewControllerTests: XCTestCase {
         
         let mockSession = URLSessionMock.createMockSession(fromJsonFile: "data", andStatusCode: 200, andError: nil)
         let repository = getMockWebLocationsRepository(mockSession: mockSession)
-        let presenter = LocationsListPresenter(output: locationsListViewController, locationsRepository: repository)
+        let presenter = LocationsListPresenter(output: locationsListViewController,
+                                               locationsRepository: repository,
+                                               localLocationRepository: localLocationRepository)
         locationsListViewController.presenter = presenter
         
         // fire getLocations after load viewController
@@ -51,7 +57,7 @@ final class LocationsListViewControllerTests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             XCTAssertNotNil(self.locationsListViewController.tableDataSource)
             XCTAssertNotNil(self.locationsListViewController.tableDataSource?.presenterInput)
-            XCTAssertEqual(self.locationsListViewController.tableDataSource?.itemsForTable.count, 2)
+            XCTAssertEqual(self.locationsListViewController.tableDataSource?.tableSections.count, 1)
             expectation.fulfill()
         }
         
@@ -60,6 +66,13 @@ final class LocationsListViewControllerTests: XCTestCase {
     
     func test_localLocation_success() {
         let expectation = XCTestExpectation()
+
+        let mockSession = URLSessionMock.createMockSession(fromJsonFile: "data", andStatusCode: 200, andError: nil)
+        let repository = getMockWebLocationsRepository(mockSession: mockSession)
+        let presenter = LocationsListPresenter(output: locationsListViewController,
+                                               locationsRepository: repository,
+                                               localLocationRepository: localLocationRepository)
+        locationsListViewController.presenter = presenter
         
         localLocationRepository.save(location: Location(name: "Cairo", lat: 12.3333, long: 34.44444))
         localLocationRepository.save(location: Location(name: "Amsterdam", lat: 55.3333, long: 25.44444))
@@ -73,7 +86,7 @@ final class LocationsListViewControllerTests: XCTestCase {
             
             XCTAssertNotNil(self.locationsListViewController.tableDataSource)
             XCTAssertNotNil(self.locationsListViewController.tableDataSource?.presenterInput)
-            XCTAssertEqual(self.locationsListViewController.tableDataSource?.itemsForTable.count, 2)
+            XCTAssertEqual(self.locationsListViewController.tableDataSource?.tableSections.count, 2)
             expectation.fulfill()
         }
         

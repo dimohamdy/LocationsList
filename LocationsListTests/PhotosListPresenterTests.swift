@@ -10,8 +10,12 @@ import XCTest
 
 final class LocationsListPresenterTests: XCTestCase {
     var mockLocationsListPresenterOutput: MockLocationsListPresenterOutput!
+    private var userDefaults: UserDefaults!
 
     override func setUp() {
+        userDefaults = UserDefaults(suiteName: #file)
+        userDefaults.removePersistentDomain(forName: #file)
+
         mockLocationsListPresenterOutput = MockLocationsListPresenterOutput()
     }
 
@@ -26,7 +30,7 @@ final class LocationsListPresenterTests: XCTestCase {
         let presenter = getLocationsListPresenter(fromJsonFile: "data")
         presenter.getLocation()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [self] in
-            XCTAssertEqual(mockLocationsListPresenterOutput.itemsForTable.count, 1)
+            XCTAssertEqual(mockLocationsListPresenterOutput.tableSections.count, 1)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 3)
@@ -39,7 +43,7 @@ final class LocationsListPresenterTests: XCTestCase {
         presenter.getLocation()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [self] in
-            XCTAssertEqual(mockLocationsListPresenterOutput.itemsForTable.count, 0)
+            XCTAssertEqual(mockLocationsListPresenterOutput.tableSections.count, 0)
             if let error = mockLocationsListPresenterOutput.error as? LocationsListError {
                 switch error {
                 case .noResults:
@@ -57,7 +61,7 @@ final class LocationsListPresenterTests: XCTestCase {
         Reachability.shared =  MockReachability(internetConnectionState: .unsatisfied)
         let presenter = getLocationsListPresenter(fromJsonFile: "noData")
         presenter.getLocation()
-        XCTAssertEqual(mockLocationsListPresenterOutput.itemsForTable.count, 0)
+        XCTAssertEqual(mockLocationsListPresenterOutput.tableSections.count, 0)
         if let error = mockLocationsListPresenterOutput.error as? LocationsListError {
             switch error {
             case .noInternetConnection:
@@ -76,7 +80,10 @@ final class LocationsListPresenterTests: XCTestCase {
     private func getLocationsListPresenter(fromJsonFile file: String) -> LocationsListPresenter {
         let mockSession = URLSessionMock.createMockSession(fromJsonFile: file, andStatusCode: 200, andError: nil)
         let repository = getMockWebLocationsRepository(mockSession: mockSession)
-        return LocationsListPresenter(output: mockLocationsListPresenterOutput, locationsRepository: repository)
+        let localLocationRepository =  UserDefaultLocalLocationRepository(userDefaults: userDefaults)
+        return LocationsListPresenter(output: mockLocationsListPresenterOutput,
+                                      locationsRepository: repository,
+                                      localLocationRepository: localLocationRepository)
     }
 }
 
@@ -89,14 +96,14 @@ final class MockLocationsListPresenterOutput: UIViewController, LocationsListPre
 
     }
 
-    var itemsForTable: [ItemTableViewCellType] = []
+    var tableSections: [TableViewSectionType] = []
     var error: Error!
 
     func updateData(error: Error) {
         self.error = error
     }
 
-    func updateData(itemsForTable: [ItemTableViewCellType]) {
-        self.itemsForTable = itemsForTable
+    func updateData(tableSections: [TableViewSectionType]) {
+        self.tableSections = tableSections
     }
 }

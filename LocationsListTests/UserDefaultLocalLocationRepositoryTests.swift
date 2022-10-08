@@ -10,9 +10,12 @@ import XCTest
 
 final class UserDefaultLocalLocationRepositoryTests: XCTestCase {
     var localLocationRepository: UserDefaultLocalLocationRepository!
-    
+    private var userDefaults: UserDefaults!
+
     override func setUp() {
-        localLocationRepository = UserDefaultLocalLocationRepository.shared
+        userDefaults = UserDefaults(suiteName: #file)
+        userDefaults.removePersistentDomain(forName: #file)
+        localLocationRepository = UserDefaultLocalLocationRepository(userDefaults: userDefaults)
         _ = localLocationRepository.clearLocations()
     }
     

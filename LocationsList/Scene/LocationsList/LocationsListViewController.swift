@@ -119,13 +119,13 @@ extension LocationsListViewController: LocationsListPresenterOutput {
         }
     }
 
-    func updateData(itemsForTable: [ItemTableViewCellType]) {
+    func updateData(tableSections: [TableViewSectionType]) {
         DispatchQueue.main.async {
             //Clear any placeholder view from tableView
             self.locationsTableView.restore()
 
             // Reload the tableView
-            self.tableDataSource = LocationsTableViewDataSource(presenterInput: self.presenter, itemsForTable: itemsForTable)
+            self.tableDataSource = LocationsTableViewDataSource(presenterInput: self.presenter, tableSections: tableSections)
             self.locationsTableView.dataSource = self.tableDataSource
             self.locationsTableView.delegate = self.tableDataSource
             self.locationsTableView.reloadData()
