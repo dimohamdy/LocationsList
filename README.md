@@ -5,14 +5,15 @@
 
 * App structure I use **MVP** with Input-Output approach **Delegate** to notify about updates.
 
+* Use Async/await Swift.
+
 * I use the **Repository** design pattern to act as a Data source from API and UserDefault for saving location.
 
-* Separate the data source of UITableView to other class **PhotosCollectionViewDataSource**.
+* Separate the data source of UITableView to other class **LocationsTableViewDataSource**.
 
 * I use **CellReusable** protocol and create 2 extensions for UITableView to reduce code when reusing the cell.
 
 * Use DataLoader.swift to get data from local JSON.
-
 
 * I used [SwiftLint](https://github.com/realm/SwiftLint) to enhance Swift style.
 
@@ -21,8 +22,9 @@
 * I used SPM.
 
 # Enhancement
- 1- Add Swiftlint
- 2- More unit-tests
+ 1 - Add more unit-tests.
+ 2 - Add UITest.
+ 3 - Use UITableViewDiffableDataSource.
 
 
 # UnitTest
@@ -35,6 +37,6 @@
 
 ## Info
 
-Name: Ahmed Hamdy
-
+Name: Ahmed Abdelaziz
+Website: https://dimohamdy.herokuapp.com/
 Email: dimo.hamdy@gmail.com
