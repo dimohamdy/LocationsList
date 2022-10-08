@@ -5,8 +5,8 @@
 //  Created by Dimo Abdelaziz on 06/10/2022.
 //
 
-import XCTest
 @testable import LocationsList
+import XCTest
 
 final class LocationTests: XCTestCase {
 
@@ -25,7 +25,7 @@ final class LocationTests: XCTestCase {
     }
 
     func testDecoding_whenLocationData_returnsALocationObject() throws {
-       let location =  try JSONDecoder().decode(Location.self, from: location)
+       let location = try JSONDecoder().decode(Location.self, from: location)
         XCTAssertEqual(location.name, "Amsterdam")
         XCTAssertEqual(location.lat, 52.3547498)
         XCTAssertEqual(location.long, 4.8339215)

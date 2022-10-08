@@ -5,8 +5,8 @@
 //  Created by Dimo Abdelaziz on 06/10/2022.
 //
 
-import XCTest
 @testable import LocationsList
+import XCTest
 
 final class WebLocationsRepositoryTests: XCTestCase {
     var webLocationsRepository: WebLocationsRepository!
@@ -18,7 +18,7 @@ final class WebLocationsRepositoryTests: XCTestCase {
     func test_GetItems_FromAPI() throws {
         runAsyncTest {
             let mockSession = URLSessionMock.createMockSession(fromJsonFile: "data", andStatusCode: 200, andError: nil)
-            let mockAPIClient =  APIClient(withSession: mockSession)
+            let mockAPIClient = APIClient(withSession: mockSession)
             self.webLocationsRepository = WebLocationsRepository(client: mockAPIClient)
             // Act: get data from API .
             let locations = try await self.webLocationsRepository.getLocations()
@@ -31,7 +31,7 @@ final class WebLocationsRepositoryTests: XCTestCase {
     func test_NoResult_FromAPI() {
         runAsyncTest { [self] in
             let mockSession = URLSessionMock.createMockSession(fromJsonFile: "noData", andStatusCode: 200, andError: nil)
-            let mockAPIClient =  APIClient(withSession: mockSession)
+            let mockAPIClient = APIClient(withSession: mockSession)
             webLocationsRepository = WebLocationsRepository(client: mockAPIClient)
             // Act: get data from API .
             let locations = try await webLocationsRepository.getLocations()
@@ -39,7 +39,6 @@ final class WebLocationsRepositoryTests: XCTestCase {
         }
     }
 }
-
 
 extension XCTestCase {
     func runAsyncTest(

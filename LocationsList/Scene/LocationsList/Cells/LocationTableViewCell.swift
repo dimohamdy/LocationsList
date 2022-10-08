@@ -33,7 +33,6 @@ final class LocationTableViewCell: UITableViewCell, CellReusable {
         backgroundColor = .systemBackground
         setupViews()
     }
-
     
     private func setupViews() {
         addSubview(titleLabel)

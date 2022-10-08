@@ -5,10 +5,11 @@
 //  Created by Dimo Abdelaziz on 06/10/2022.
 //
 
-import XCTest
 @testable import LocationsList
+import XCTest
 
 final class UserDefaultLocalLocationRepositoryTests: XCTestCase {
+    
     var localLocationRepository: UserDefaultLocalLocationRepository!
     private var userDefaults: UserDefaults!
 

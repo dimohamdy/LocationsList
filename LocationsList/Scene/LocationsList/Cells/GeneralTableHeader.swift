@@ -12,7 +12,7 @@ class GeneralTableHeader: UITableViewHeaderFooterView, CellReusable {
 
     let headerLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.textColor =  .label
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

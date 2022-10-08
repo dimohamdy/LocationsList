@@ -25,7 +25,7 @@ final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITab
     // MARK: - UITableView view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return tableSections.count
+        tableSections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,17 +53,17 @@ final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = tableSections[indexPath.section]
         switch section {
-        case .online(let locations), .local(let locations) :
+        case .online(let locations), .local(let locations): 
             presenterInput?.open(location: locations[indexPath.row])
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CellHeightConstant.heightOfLocationCell
+        CellHeightConstant.heightOfLocationCell
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CellHeightConstant.heightOfHistoryHeader
+        CellHeightConstant.heightOfHistoryHeader
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -74,7 +74,7 @@ final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITab
         switch section {
         case .online:
             headerCell.headerLabel.text = Strings.onlineTitle.localized()
-        case .local :
+        case .local: 
             headerCell.headerLabel.text = Strings.localTitle.localized()
         }
 

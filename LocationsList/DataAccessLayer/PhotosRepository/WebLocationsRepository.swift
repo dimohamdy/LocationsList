@@ -10,8 +10,9 @@ import Foundation
 final class WebLocationsRepository: LocationsRepository {
     
     let client: APIClient
+    
     init(client: APIClient = APIClient()) {
-        self.client =  client
+        self.client = client
     }
     
     func getLocations() async throws -> [Location] {

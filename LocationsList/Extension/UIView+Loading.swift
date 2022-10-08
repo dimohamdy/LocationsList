@@ -53,7 +53,7 @@ extension UIView {
 
     }
 
-    func dismissLoadingIndicator(tag: Tags.Loading =  Tags.Loading.defaultLoadingIndicator) {
+    func dismissLoadingIndicator(tag: Tags.Loading = Tags.Loading.defaultLoadingIndicator) {
 
         DispatchQueue.main.async(execute: { [weak self] in
             guard let self = self else { return }

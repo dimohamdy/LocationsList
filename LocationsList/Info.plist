@@ -4,10 +4,10 @@
 <dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
-        <key>LSApplicationQueriesSchemes</key>
-        <array>
-            <string>wikipedia</string>
-        </array>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>wikipedia</string>
+		</array>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 		<key>UISceneConfigurations</key>

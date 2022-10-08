@@ -27,21 +27,19 @@ final class LocationsListViewController: UIViewController {
     }()
 
     var presenter: LocationsListPresenterInput?
-    let router: LocationsListRouter!
+    private let router: LocationsListRouter
 
     init(withPresenter presenter: LocationsListPresenterInput? = nil, router: LocationsListRouter) {
         self.presenter = presenter
         self.router = router
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        self.presenter = nil
-        self.router = nil
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: View lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +90,7 @@ final class LocationsListViewController: UIViewController {
 // MARK: - LocationsListPresenterOutput
 extension LocationsListViewController: LocationsListPresenterOutput {
 
-    func clearCollection() {
+    private func clearTableView() {
         DispatchQueue.main.async {
             self.tableDataSource = nil
             self.locationsTableView.dataSource = nil
@@ -102,7 +100,7 @@ extension LocationsListViewController: LocationsListPresenterOutput {
     }
 
     func emptyState(emptyPlaceHolderType: EmptyPlaceHolderType) {
-        clearCollection()
+        clearTableView()
         locationsTableView.setEmptyView(emptyPlaceHolderType: emptyPlaceHolderType, completionBlock: { [weak self] in
             self?.presenter?.getLocation()
         })
@@ -121,7 +119,7 @@ extension LocationsListViewController: LocationsListPresenterOutput {
 
     func updateData(tableSections: [TableViewSectionType]) {
         DispatchQueue.main.async {
-            //Clear any placeholder view from tableView
+            // Clear any placeholder view from tableView
             self.locationsTableView.restore()
 
             // Reload the tableView

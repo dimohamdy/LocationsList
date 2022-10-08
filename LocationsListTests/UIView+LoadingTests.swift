@@ -5,11 +5,12 @@
 //  Created by Dimo Abdelaziz on 06/10/2022.
 //
 
-import XCTest
 @testable import LocationsList
+import XCTest
 
 final class UIViewLoadingTests: XCTestCase {
     var view: UIView!
+    
     override func setUp() {
         view = UIView()
     }

@@ -5,8 +5,8 @@
 //  Created by Dimo Abdelaziz on 30/09/2022.
 //
 
-import Network
 import Foundation
+import Network
 
 class Reachability {
 
@@ -14,7 +14,7 @@ class Reachability {
     lazy private var monitor = NWPathMonitor()
 
     var isConnected: Bool {
-        return monitor.currentPath.status == .satisfied
+        monitor.currentPath.status == .satisfied
     }
 
     func startNetworkReachabilityObserver() {

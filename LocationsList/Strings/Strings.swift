@@ -25,8 +25,7 @@ enum Strings: String {
     case noLocationsErrorTitle = "No_Locations_Error_Title"
     case noLocationsErrorSubtitle = "No_Locations_Error_Subtitle"
 
-
-    // MARK: Collection Headers
+    // MARK: TableView Headers
     case onlineTitle = "Online_Title"
     case localTitle = "Local_Title"
 
@@ -44,6 +43,6 @@ enum Strings: String {
     case locationAdded = "Location_Added_Successfully"
 
     func localized() -> String {
-        return NSLocalizedString(self.rawValue, comment: "")
+        NSLocalizedString(self.rawValue, comment: "")
     }
 }

@@ -15,12 +15,14 @@ protocol URLSessionProtocol {
 
 extension URLSession: URLSessionProtocol {
     func data(with url: URL) async throws -> (Data, URLResponse) {
-        return try await data(from: url)
+        try await data(from: url)
     }
 }
 
 final class APIClient {
-    private var session: URLSessionProtocol
+    
+    private let session: URLSessionProtocol
+
     init(withSession session: URLSessionProtocol = URLSession.shared) {
         self.session = session
     }

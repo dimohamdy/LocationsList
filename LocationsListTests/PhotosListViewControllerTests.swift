@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import XCTest
 @testable import LocationsList
+import XCTest
 
 final class LocationsListViewControllerTests: XCTestCase {
     var locationsListViewController: LocationsListViewController!
@@ -20,21 +20,20 @@ final class LocationsListViewControllerTests: XCTestCase {
         userDefaults.removePersistentDomain(forName: #file)
         localLocationRepository = UserDefaultLocalLocationRepository(userDefaults: userDefaults)
 
-        locationsListViewController =  LocationsListBuilder.viewController()        
+        locationsListViewController = LocationsListBuilder.viewController()        
         // Arrange: setup UINavigationController
         let keyWindow = UIApplication.shared.connectedScenes
-            .filter({$0.activationState == .foregroundActive})
-            .map({$0 as? UIWindowScene})
-            .compactMap({$0})
+            .filter({ $0.activationState == .foregroundActive })
+            .map({ $0 as? UIWindowScene })
+            .compactMap({ $0 })
             .first?.windows
-            .filter({$0.isKeyWindow}).first
+            .filter({ $0.isKeyWindow }).first
         keyWindow?.rootViewController = UINavigationController(rootViewController: locationsListViewController)
     }
     
     override func tearDown() {
         locationsListViewController = nil
         _ = localLocationRepository.clearLocations()
-        
     }
     
     func test_getLocations_success() {
@@ -94,7 +93,7 @@ final class LocationsListViewControllerTests: XCTestCase {
     }
     
     func getMockWebLocationsRepository(mockSession: URLSessionMock) -> WebLocationsRepository {
-        let mockAPIClient =  APIClient(withSession: mockSession)
+        let mockAPIClient = APIClient(withSession: mockSession)
         return WebLocationsRepository(client: mockAPIClient)
     }
 }

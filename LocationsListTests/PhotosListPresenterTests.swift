@@ -5,8 +5,8 @@
 //  Created by Dimo Abdelaziz on 06/10/2022.
 //
 
-import XCTest
 @testable import LocationsList
+import XCTest
 
 final class LocationsListPresenterTests: XCTestCase {
     var mockLocationsListPresenterOutput: MockLocationsListPresenterOutput!
@@ -21,7 +21,7 @@ final class LocationsListPresenterTests: XCTestCase {
 
     override func tearDown() {
         mockLocationsListPresenterOutput = nil
-        Reachability.shared =  MockReachability(internetConnectionState: .satisfied)
+        Reachability.shared = MockReachability(internetConnectionState: .satisfied)
     }
 
     func test_getLocations_success() {
@@ -58,7 +58,7 @@ final class LocationsListPresenterTests: XCTestCase {
     }
 
     func test_getLocations_noInternetConnection() {
-        Reachability.shared =  MockReachability(internetConnectionState: .unsatisfied)
+        Reachability.shared = MockReachability(internetConnectionState: .unsatisfied)
         let presenter = getLocationsListPresenter(fromJsonFile: "noData")
         presenter.getLocation()
         XCTAssertEqual(mockLocationsListPresenterOutput.tableSections.count, 0)
@@ -73,14 +73,14 @@ final class LocationsListPresenterTests: XCTestCase {
     }
 
     private func getMockWebLocationsRepository(mockSession: URLSessionMock) -> WebLocationsRepository {
-        let mockAPIClient =  APIClient(withSession: mockSession)
+        let mockAPIClient = APIClient(withSession: mockSession)
         return WebLocationsRepository(client: mockAPIClient)
     }
 
     private func getLocationsListPresenter(fromJsonFile file: String) -> LocationsListPresenter {
         let mockSession = URLSessionMock.createMockSession(fromJsonFile: file, andStatusCode: 200, andError: nil)
         let repository = getMockWebLocationsRepository(mockSession: mockSession)
-        let localLocationRepository =  UserDefaultLocalLocationRepository(userDefaults: userDefaults)
+        let localLocationRepository = UserDefaultLocalLocationRepository(userDefaults: userDefaults)
         return LocationsListPresenter(output: mockLocationsListPresenterOutput,
                                       locationsRepository: repository,
                                       localLocationRepository: localLocationRepository)

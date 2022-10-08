@@ -14,7 +14,7 @@ protocol NotificationName {
 
 extension RawRepresentable where RawValue == String, Self: NotificationName {
     var name: Notification.Name {
-        return Notification.Name(rawValue)
+        Notification.Name(rawValue)
     }
 }
 

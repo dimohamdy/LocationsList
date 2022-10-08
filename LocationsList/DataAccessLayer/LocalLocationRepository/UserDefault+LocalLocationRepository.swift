@@ -47,7 +47,7 @@ final class UserDefaultLocalLocationRepository: LocalLocationRepository {
     }
 
     private func load() {
-        guard let data = userDefaults.data(forKey:  UserDefaultsKey.locations.rawValue),
+        guard let data = userDefaults.data(forKey: UserDefaultsKey.locations.rawValue),
               let savedLocations = try? JSONDecoder().decode([Location].self, from: data) else { locations = []; return }
         locations = savedLocations
     }
@@ -55,7 +55,7 @@ final class UserDefaultLocalLocationRepository: LocalLocationRepository {
     private func save() {
         do {
             let data = try JSONEncoder().encode(locations)
-            userDefaults.set(data, forKey:  UserDefaultsKey.locations.rawValue)
+            userDefaults.set(data, forKey: UserDefaultsKey.locations.rawValue)
         } catch {
             print(error)
         }

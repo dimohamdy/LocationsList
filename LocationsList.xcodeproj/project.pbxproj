@@ -25,6 +25,7 @@
 		3397E2B628EA11C600B35755 /* AddLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397E2AF28EA11C500B35755 /* AddLocationPresenter.swift */; };
 		3397E2B728EA11C600B35755 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397E2B028EA11C500B35755 /* AddLocationViewController.swift */; };
 		33BC1DE128F189D800798749 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC1DE028F189D800798749 /* AppAppearance.swift */; };
+		33BC1DE328F1CC4D00798749 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC1DE228F1CC4D00798749 /* UserDefaultsKey.swift */; };
 		33CE0A7D28E74D2600B6DC46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0A7C28E74D2600B6DC46 /* AppDelegate.swift */; };
 		33CE0A7F28E74D2600B6DC46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0A7E28E74D2600B6DC46 /* SceneDelegate.swift */; };
 		33CE0A8628E74D2800B6DC46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33CE0A8528E74D2800B6DC46 /* Assets.xcassets */; };
@@ -35,7 +36,7 @@
 		33CE0AB928E74DA700B6DC46 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0AB328E74DA600B6DC46 /* Reachability.swift */; };
 		33CE0ABA28E74DA700B6DC46 /* UIView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0AB428E74DA600B6DC46 /* UIView+Loading.swift */; };
 		33CE0ABC28E74DA700B6DC46 /* UITableView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0AB628E74DA600B6DC46 /* UITableView+EmptyState.swift */; };
-		33CE0ABD28E74DA700B6DC46 /* UICollectionView+ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0AB728E74DA600B6DC46 /* UICollectionView+ReusableCell.swift */; };
+		33CE0ABD28E74DA700B6DC46 /* UITableView+ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0AB728E74DA600B6DC46 /* UITableView+ReusableCell.swift */; };
 		33CE0AC028E750EF00B6DC46 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0ABF28E750EF00B6DC46 /* Location.swift */; };
 		33CE0AC428E754F700B6DC46 /* BasePresenterIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0AC228E754F700B6DC46 /* BasePresenterIO.swift */; };
 		33CE0AC528E754F700B6DC46 /* CellReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0AC328E754F700B6DC46 /* CellReusable.swift */; };
@@ -87,6 +88,7 @@
 		3397E2AF28EA11C500B35755 /* AddLocationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationPresenter.swift; sourceTree = "<group>"; };
 		3397E2B028EA11C500B35755 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		33BC1DE028F189D800798749 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
+		33BC1DE228F1CC4D00798749 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		33CE0A7928E74D2600B6DC46 /* LocationsList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationsList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33CE0A7C28E74D2600B6DC46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33CE0A7E28E74D2600B6DC46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 		33CE0AB328E74DA600B6DC46 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		33CE0AB428E74DA600B6DC46 /* UIView+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Loading.swift"; sourceTree = "<group>"; };
 		33CE0AB628E74DA600B6DC46 /* UITableView+EmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyState.swift"; sourceTree = "<group>"; };
-		33CE0AB728E74DA600B6DC46 /* UICollectionView+ReusableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ReusableCell.swift"; sourceTree = "<group>"; };
+		33CE0AB728E74DA600B6DC46 /* UITableView+ReusableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+ReusableCell.swift"; sourceTree = "<group>"; };
 		33CE0ABF28E750EF00B6DC46 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		33CE0AC228E754F700B6DC46 /* BasePresenterIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresenterIO.swift; sourceTree = "<group>"; };
 		33CE0AC328E754F700B6DC46 /* CellReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellReusable.swift; sourceTree = "<group>"; };
@@ -241,7 +243,8 @@
 				33CE0AB328E74DA600B6DC46 /* Reachability.swift */,
 				33CE0AB428E74DA600B6DC46 /* UIView+Loading.swift */,
 				33CE0AB628E74DA600B6DC46 /* UITableView+EmptyState.swift */,
-				33CE0AB728E74DA600B6DC46 /* UICollectionView+ReusableCell.swift */,
+				33CE0AB728E74DA600B6DC46 /* UITableView+ReusableCell.swift */,
+				33BC1DE228F1CC4D00798749 /* UserDefaultsKey.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				33CE0A7528E74D2600B6DC46 /* Sources */,
 				33CE0A7628E74D2600B6DC46 /* Frameworks */,
 				33CE0A7728E74D2600B6DC46 /* Resources */,
+				33BC1DE428F1CD4100798749 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -454,6 +458,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		33BC1DE428F1CD4100798749 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		33CE0A7528E74D2600B6DC46 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -469,7 +493,7 @@
 				33CE0AD428E7559600B6DC46 /* UserDefault+LocalLocationRepository.swift in Sources */,
 				33CE0AE428E755E800B6DC46 /* TableViewSectionType.swift in Sources */,
 				33CE0AEB28E755E800B6DC46 /* LocationsListViewController.swift in Sources */,
-				33CE0ABD28E74DA700B6DC46 /* UICollectionView+ReusableCell.swift in Sources */,
+				33CE0ABD28E74DA700B6DC46 /* UITableView+ReusableCell.swift in Sources */,
 				33CE0AB928E74DA700B6DC46 /* Reachability.swift in Sources */,
 				33CE0AD228E7559600B6DC46 /* APIClient.swift in Sources */,
 				33CE0AD728E7559600B6DC46 /* APILinksFactory.swift in Sources */,
@@ -490,6 +514,7 @@
 				3397E2B728EA11C600B35755 /* AddLocationViewController.swift in Sources */,
 				33CE0AF128E758EA00B6DC46 /* EntryPoint.swift in Sources */,
 				33CE0AD628E7559600B6DC46 /* LocationsRepository.swift in Sources */,
+				33BC1DE328F1CC4D00798749 /* UserDefaultsKey.swift in Sources */,
 				33BC1DE128F189D800798749 /* AppAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

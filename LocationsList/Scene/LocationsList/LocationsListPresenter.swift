@@ -42,7 +42,7 @@ final class LocationsListPresenter {
 
         self.localLocationRepository.delegate = self
 
-        [Notifications.Reachability.connected.name, Notifications.Reachability.notConnected.name].forEach { (notification) in
+        [Notifications.Reachability.connected.name, Notifications.Reachability.notConnected.name].forEach { notification in
             NotificationCenter.default.addObserver(self, selector: #selector(changeInternetConnection), name: notification, object: nil)
         }
 

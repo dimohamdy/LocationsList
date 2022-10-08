@@ -11,7 +11,6 @@ struct LocationsResult: Codable {
     let locations: [Location]
 }
 
-
 struct Location: Codable, Equatable {
 
     let name: String
@@ -31,13 +30,13 @@ struct Location: Codable, Equatable {
         name = try values.decodeIfPresent(String.self, forKey: .name) ?? "\(Strings.latitude.localized()):\(lat), \(Strings.longitude.localized()):\(long)"
     }
 
-    init(name: String,lat: Double, long: Double) {
+    init(name: String, lat: Double, long: Double) {
         self.lat = lat
         self.long = long
         self.name = name
     }
 
     static func == (lhs: Location, rhs: Location) -> Bool {
-        return lhs.name == rhs.name
+        lhs.name == rhs.name
     }
 }

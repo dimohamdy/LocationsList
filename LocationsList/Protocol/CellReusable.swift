@@ -13,6 +13,6 @@ protocol CellReusable {
 
 extension CellReusable {
     static var identifier: String {
-        return "\(self)"
+        "\(self)"
     }
 }

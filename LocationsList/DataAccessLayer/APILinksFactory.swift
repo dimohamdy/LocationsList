@@ -10,6 +10,7 @@ import Foundation
 struct APILinksFactory {
     
     private static let baseURL = "https://raw.githubusercontent.com/abnamrocoesd/assignment-ios/main/"
+    
     enum API {
         case locations
 

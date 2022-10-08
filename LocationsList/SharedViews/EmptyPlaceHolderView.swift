@@ -61,7 +61,7 @@ final class EmptyPlaceHolderView: UIView {
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.alignment = .fill
-        stackView.spacing =  5
+        stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(logoImageView)
         stackView.addArrangedSubview(titleLabel)

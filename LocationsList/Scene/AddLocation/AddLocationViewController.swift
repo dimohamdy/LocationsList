@@ -18,7 +18,7 @@ final class AddLocationViewController: UIViewController {
         textField.autocorrectionType = .no
         textField.font = UIFont.systemFont(ofSize: 13)
         textField.borderStyle = .roundedRect
-        textField.clearButtonMode = .whileEditing;
+        textField.clearButtonMode = .whileEditing
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             textField.becomeFirstResponder()
@@ -35,7 +35,7 @@ final class AddLocationViewController: UIViewController {
         textField.autocorrectionType = .no
         textField.font = UIFont.systemFont(ofSize: 13)
         textField.borderStyle = .roundedRect
-        textField.clearButtonMode = .whileEditing;
+        textField.clearButtonMode = .whileEditing
         return textField
     }()
 
@@ -48,14 +48,14 @@ final class AddLocationViewController: UIViewController {
         textField.autocorrectionType = .no
         textField.font = UIFont.systemFont(ofSize: 13)
         textField.borderStyle = .roundedRect
-        textField.clearButtonMode = .whileEditing;
+        textField.clearButtonMode = .whileEditing
 
         return textField
     }()
 
     private let stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis  = .vertical
+        stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -124,7 +124,7 @@ final class AddLocationViewController: UIViewController {
         // Validate latitude value
         if let latitude = Double(latitudeTextField.text ?? ""), presenter.validate(latitude: latitude)  {
             latitudeValue = latitude
-        }else {
+        } else {
             showError(title: Strings.wrongData.localized(), subtitle: Strings.checkValueLatitude.localized())
         }
 
@@ -132,15 +132,16 @@ final class AddLocationViewController: UIViewController {
         if let longitude = Double(longitudeTextField.text ?? ""), presenter.validate(longitude: longitude) {
             longitudeValue = longitude
         } else {
-            showError(title: Strings.wrongData.localized(), subtitle:  Strings.checkValueLongitude.localized())
+            showError(title: Strings.wrongData.localized(), subtitle: Strings.checkValueLongitude.localized())
         }
 
-        if let locationValue ,let latitudeValue, let longitudeValue {
+        if let locationValue, let latitudeValue, let longitudeValue {
             presenter.add(location: Location(name: locationValue, lat: latitudeValue, long: longitudeValue))
         }
     }
 
-    @objc func cancelTodoItem(sender: UIButton) {
+    @objc
+    func cancelTodoItem(sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
 }
