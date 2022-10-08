@@ -1,5 +1,5 @@
 //
-//  UICollectionView+ReusableCell.swift
+//  UITableView+ReusableCell.swift
 //  LocationsList
 //
 //  Created by Dimo Abdelaziz on 30/09/2022.
