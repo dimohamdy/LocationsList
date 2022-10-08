@@ -88,10 +88,6 @@ final class LocationsListPresenterTests: XCTestCase {
 }
 
 final class MockLocationsListPresenterOutput: UIViewController, LocationsListPresenterOutput {
-    func clearCollection() {
-
-    }
-
     func emptyState(emptyPlaceHolderType: EmptyPlaceHolderType) {
 
     }
