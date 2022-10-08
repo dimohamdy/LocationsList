@@ -109,6 +109,10 @@ final class AddLocationViewController: UIViewController {
 
     @objc
     private func saveLocation() {
+        guard let presenter else {
+            return
+        }
+
         var locationValue: String?
         var latitudeValue: Double?
         var longitudeValue: Double?
@@ -117,26 +121,22 @@ final class AddLocationViewController: UIViewController {
             locationValue = locationName
         }
 
-        // Validate long and lat https://stackoverflow.com/a/7780993/3806350
-
         // Validate latitude value
-        let latitudeRange = -90.0 ... 90.0
-        if let latitude = Double(latitudeTextField.text ?? ""), latitudeRange.contains(latitude)  {
+        if let latitude = Double(latitudeTextField.text ?? ""), presenter.validate(latitude: latitude)  {
             latitudeValue = latitude
         }else {
             showError(title: Strings.wrongData.localized(), subtitle: Strings.checkValueLatitude.localized())
         }
 
         // Validate longitude value
-        let longitudeRange = -180.0 ... 180.0
-        if let longitude = Double(longitudeTextField.text ?? ""), longitudeRange.contains(longitude) {
+        if let longitude = Double(longitudeTextField.text ?? ""), presenter.validate(longitude: longitude) {
             longitudeValue = longitude
         } else {
             showError(title: Strings.wrongData.localized(), subtitle:  Strings.checkValueLongitude.localized())
         }
 
         if let locationValue ,let latitudeValue, let longitudeValue {
-            presenter?.add(location: Location(name: locationValue, lat: latitudeValue, long: longitudeValue))
+            presenter.add(location: Location(name: locationValue, lat: latitudeValue, long: longitudeValue))
         }
     }
 

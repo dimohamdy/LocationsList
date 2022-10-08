@@ -9,6 +9,8 @@ import Foundation
 
 protocol AddLocationPresenterInput: BasePresenterInput {
     func add(location: Location)
+    func validate(latitude: Double) -> Bool
+    func validate(longitude: Double) -> Bool
 }
 
 protocol AddLocationPresenterOutput: BasePresenterOutput {
@@ -20,9 +22,6 @@ final class AddLocationPresenter {
     // MARK: Injections
     private weak var output: AddLocationPresenterOutput?
     let localLocationRepository: LocalLocationRepository
-
-    // internal
-    private var locationsSections: [ItemTableViewCellType] = [ItemTableViewCellType]()
 
     // MARK: Init
     init(output: AddLocationPresenterOutput,
@@ -39,5 +38,16 @@ extension AddLocationPresenter: AddLocationPresenterInput {
     func add(location: Location) {
         localLocationRepository.save(location: location)
         output?.addLocation(success: true)
+    }
+
+    // Validate long and lat https://stackoverflow.com/a/7780993/3806350
+    func validate(latitude: Double) -> Bool {
+        let latitudeRange = -90.0 ... 90.0
+        return latitudeRange.contains(latitude)
+    }
+
+    func validate(longitude: Double) -> Bool {
+        let longitudeRange = -180.0 ... 180.0
+        return longitudeRange.contains(longitude)
     }
 }
