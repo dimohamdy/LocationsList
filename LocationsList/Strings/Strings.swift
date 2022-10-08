@@ -41,6 +41,8 @@ enum Strings: String {
 
     case checkValueLongitude = "Check_Value_Longitude"
 
+    case locationAdded = "Location_Added_Successfully"
+
     func localized() -> String {
         return NSLocalizedString(self.rawValue, comment: "")
     }

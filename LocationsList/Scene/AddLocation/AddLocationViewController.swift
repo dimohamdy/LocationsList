@@ -149,7 +149,10 @@ final class AddLocationViewController: UIViewController {
 extension AddLocationViewController: AddLocationPresenterOutput {
     func addLocation(success: Bool) {
         if success {
-            navigationController?.popViewController(animated: true)
+            showSuccess(title: Strings.locationAdded.localized(), subtitle: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            })
         }
     }
 
