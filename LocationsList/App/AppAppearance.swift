@@ -1,6 +1,7 @@
 import UIKit
 
 struct AppAppearance {
+
     func defaultSetup() {
 
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]

@@ -24,6 +24,7 @@
 		3397E2B528EA11C600B35755 /* AddLocationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397E2AE28EA11C500B35755 /* AddLocationBuilder.swift */; };
 		3397E2B628EA11C600B35755 /* AddLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397E2AF28EA11C500B35755 /* AddLocationPresenter.swift */; };
 		3397E2B728EA11C600B35755 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397E2B028EA11C500B35755 /* AddLocationViewController.swift */; };
+		33BC1DE128F189D800798749 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC1DE028F189D800798749 /* AppAppearance.swift */; };
 		33CE0A7D28E74D2600B6DC46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0A7C28E74D2600B6DC46 /* AppDelegate.swift */; };
 		33CE0A7F28E74D2600B6DC46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE0A7E28E74D2600B6DC46 /* SceneDelegate.swift */; };
 		33CE0A8628E74D2800B6DC46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33CE0A8528E74D2800B6DC46 /* Assets.xcassets */; };
@@ -94,6 +95,7 @@
 		3397E2AE28EA11C500B35755 /* AddLocationBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationBuilder.swift; sourceTree = "<group>"; };
 		3397E2AF28EA11C500B35755 /* AddLocationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationPresenter.swift; sourceTree = "<group>"; };
 		3397E2B028EA11C500B35755 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
+		33BC1DE028F189D800798749 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		33CE0A7928E74D2600B6DC46 /* LocationsList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationsList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33CE0A7C28E74D2600B6DC46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33CE0A7E28E74D2600B6DC46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 		33CE0AEC28E758EA00B6DC46 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				33BC1DE028F189D800798749 /* AppAppearance.swift */,
 				33CE0AED28E758EA00B6DC46 /* EntryPoint.swift */,
 				33CE0AEF28E758EA00B6DC46 /* LocationsListError.swift */,
 			);
@@ -547,6 +550,7 @@
 				3397E2B728EA11C600B35755 /* AddLocationViewController.swift in Sources */,
 				33CE0AF128E758EA00B6DC46 /* EntryPoint.swift in Sources */,
 				33CE0AD628E7559600B6DC46 /* LocationsRepository.swift in Sources */,
+				33BC1DE128F189D800798749 /* AppAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
