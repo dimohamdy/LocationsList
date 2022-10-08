@@ -26,7 +26,7 @@ final class UserDefaultLocalLocationRepository: LocalLocationRepository {
     }
     
     func clearLocations() -> [String] {
-        userDefaults.removeObject(forKey: UserDefaultsKey.Locations.rawValue)
+        userDefaults.removeObject(forKey: UserDefaultsKey.locations.rawValue)
         return []
     }
 
@@ -47,7 +47,7 @@ final class UserDefaultLocalLocationRepository: LocalLocationRepository {
     }
 
     private func load() {
-        guard let data = userDefaults.data(forKey:  UserDefaultsKey.Locations.rawValue),
+        guard let data = userDefaults.data(forKey:  UserDefaultsKey.locations.rawValue),
               let savedLocations = try? JSONDecoder().decode([Location].self, from: data) else { locations = []; return }
         locations = savedLocations
     }
@@ -55,13 +55,9 @@ final class UserDefaultLocalLocationRepository: LocalLocationRepository {
     private func save() {
         do {
             let data = try JSONEncoder().encode(locations)
-            userDefaults.set(data, forKey:  UserDefaultsKey.Locations.rawValue)
+            userDefaults.set(data, forKey:  UserDefaultsKey.locations.rawValue)
         } catch {
             print(error)
         }
     }
-}
-
-enum UserDefaultsKey: String {
-    case Locations
 }
