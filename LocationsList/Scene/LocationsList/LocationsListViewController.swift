@@ -66,17 +66,6 @@ final class LocationsListViewController: UIViewController {
     private func configureNavigationBar() {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
         navigationItem.title = Strings.locationListTitle.localized()
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = UIColor.systemBackground
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
-        appearance.shadowColor = .clear
-        appearance.shadowImage = UIImage()
-
-        navigationController?.navigationBar.tintColor = .label
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.hidesBarsOnSwipe = true
 
         let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addLocation))
