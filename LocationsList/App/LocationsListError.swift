@@ -16,7 +16,7 @@ enum LocationsListError: Error {
     case parseError
     case fileNotFound
     case invalidServerResponse
-    
+
     var localizedDescription: String {
         switch self {
         case .noResults:

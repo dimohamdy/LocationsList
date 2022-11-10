@@ -6,8 +6,20 @@
 //
 
 import UIKit
+extension AddLocationViewController {
+    enum Tags: Int {
+    case locationNameTextField = 1
+    case latitudeTextField
+    case longitudeTextField
+        
+    case saveButtonItem
+    case cancelButtonItem
+    }
+}
 
 final class AddLocationViewController: UIViewController {
+
+    // MARK: Outlets
 
     private let locationNameTextField: UITextField = {
         let textField = UITextField(frame: .zero)
@@ -23,6 +35,7 @@ final class AddLocationViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             textField.becomeFirstResponder()
         }
+        textField.tag = AddLocationViewController.Tags.locationNameTextField.rawValue
         return textField
     }()
 
@@ -36,6 +49,7 @@ final class AddLocationViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 13)
         textField.borderStyle = .roundedRect
         textField.clearButtonMode = .whileEditing
+        textField.tag = AddLocationViewController.Tags.latitudeTextField.rawValue
         return textField
     }()
 
@@ -49,7 +63,7 @@ final class AddLocationViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 13)
         textField.borderStyle = .roundedRect
         textField.clearButtonMode = .whileEditing
-
+        textField.tag = AddLocationViewController.Tags.longitudeTextField.rawValue
         return textField
     }()
 
@@ -63,17 +77,27 @@ final class AddLocationViewController: UIViewController {
         return stackView
     }()
 
-    // MARK: Outlets
 
-    var presenter: AddLocationPresenterInput?
-    
+    private let presenter: AddLocationPresenterInput
+
     // MARK: View lifeCycle
+
+    init(presenter: AddLocationPresenterInput) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         configureNavigationBar()
     }
-    
+
     // MARK: - Setup UI
     private func setupUI() {
 
@@ -89,7 +113,7 @@ final class AddLocationViewController: UIViewController {
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
         ])
     }
 
@@ -102,6 +126,8 @@ final class AddLocationViewController: UIViewController {
 
         saveButtonItem.tintColor = .label
         cancelButtonItem.tintColor = .label
+        saveButtonItem.tag = Tags.saveButtonItem.rawValue
+        cancelButtonItem.tag = Tags.cancelButtonItem.rawValue
 
         navigationItem.rightBarButtonItems = [saveButtonItem]
         navigationItem.leftBarButtonItem = cancelButtonItem
@@ -109,10 +135,6 @@ final class AddLocationViewController: UIViewController {
 
     @objc
     private func saveLocation() {
-        guard let presenter else {
-            return
-        }
-
         var locationValue: String?
         var latitudeValue: Double?
         var longitudeValue: Double?
@@ -122,7 +144,7 @@ final class AddLocationViewController: UIViewController {
         }
 
         // Validate latitude value
-        if let latitude = Double(latitudeTextField.text ?? ""), presenter.validate(latitude: latitude)  {
+        if let latitude = Double(latitudeTextField.text ?? ""), presenter.validate(latitude: latitude) {
             latitudeValue = latitude
         } else {
             showError(title: Strings.wrongData.localized(), subtitle: Strings.checkValueLatitude.localized())

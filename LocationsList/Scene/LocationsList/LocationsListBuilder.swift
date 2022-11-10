@@ -8,13 +8,11 @@
 import UIKit
 
 struct LocationsListBuilder {
-    
-    static func viewController() -> LocationsListViewController {
-        let router = LocationsListRouter()
 
-        let viewController: LocationsListViewController = LocationsListViewController(router: router)
-        let presenter = LocationsListPresenter(output: viewController)
-        viewController.presenter = presenter
+    static func viewController(presenter: LocationsListPresenter = LocationsListPresenter(),
+                               router: LocationsListRouter = LocationsListRouter()) -> LocationsListViewController {
+        let viewController: LocationsListViewController = LocationsListViewController(presenter: presenter, router: router)
+        presenter.output = viewController
 
         router.viewController = viewController
 

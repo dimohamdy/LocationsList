@@ -20,14 +20,12 @@ protocol AddLocationPresenterOutput: BasePresenterOutput {
 final class AddLocationPresenter {
 
     // MARK: Injections
-    private weak var output: AddLocationPresenterOutput?
+    weak var output: AddLocationPresenterOutput?
     let localLocationRepository: LocalLocationRepository
 
     // MARK: Init
-    init(output: AddLocationPresenterOutput,
-         localLocationRepository: LocalLocationRepository) {
+    init(localLocationRepository: LocalLocationRepository) {
 
-        self.output = output
         self.localLocationRepository = localLocationRepository
     }
 }

@@ -10,7 +10,7 @@ import XCTest
 
 final class UIViewLoadingTests: XCTestCase {
     var view: UIView!
-    
+
     override func setUp() {
         view = UIView()
     }

@@ -8,11 +8,11 @@
 import UIKit
 
 struct AddLocationBuilder {
-    
+
     static func viewController(localLocationRepository: LocalLocationRepository = UserDefaultLocalLocationRepository.shared) -> AddLocationViewController {
-        let viewController: AddLocationViewController = AddLocationViewController()
-        let presenter = AddLocationPresenter(output: viewController, localLocationRepository: localLocationRepository)
-        viewController.presenter = presenter
+        let presenter = AddLocationPresenter(localLocationRepository: localLocationRepository)
+        let viewController: AddLocationViewController = AddLocationViewController(presenter: presenter)
+        presenter.output = viewController
         return viewController
     }
 }

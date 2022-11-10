@@ -20,7 +20,7 @@ extension URLSession: URLSessionProtocol {
 }
 
 final class APIClient {
-    
+
     private let session: URLSessionProtocol
 
     init(withSession session: URLSessionProtocol = URLSession.shared) {

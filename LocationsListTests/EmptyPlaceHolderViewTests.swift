@@ -9,7 +9,7 @@
 import XCTest
 
 final class EmptyPlaceHolderViewTests: XCTestCase {
-    
+
     var emptyPlaceHolderView: EmptyPlaceHolderView!
 
     override func setUp() {
@@ -20,7 +20,7 @@ final class EmptyPlaceHolderViewTests: XCTestCase {
     override func tearDown() {
         emptyPlaceHolderView = nil
     }
-    
+
     func test_NoInternetConnection_State() {
         emptyPlaceHolderView.emptyPlaceHolderType = .noInternetConnection
         if let button = emptyPlaceHolderView.viewWithTag(1) as? UIButton {

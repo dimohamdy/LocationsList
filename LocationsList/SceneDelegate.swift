@@ -19,5 +19,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         Reachability.shared.startNetworkReachabilityObserver()
         EntryPoint().initSplashScreen(window: window!)
     }
-
 }

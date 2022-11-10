@@ -9,21 +9,21 @@ import UIKit
 
 final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     var tableSections: [TableViewSectionType] = []
-    
+
     weak var presenterInput: LocationsListPresenterInput?
-    
+
     private struct CellHeightConstant {
         static let heightOfLocationCell: CGFloat = 50
         static let heightOfHistoryHeader: CGFloat = 50
     }
-    
+
     init(presenterInput: LocationsListPresenterInput?, tableSections: [TableViewSectionType]) {
         self.tableSections = tableSections
         self.presenterInput = presenterInput
     }
-    
+
     // MARK: - UITableView view data source
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         tableSections.count
     }
@@ -36,13 +36,13 @@ final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITab
         }
 
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = tableSections[indexPath.section]
         switch section {
         case .online(let locations), .local(let locations):
             if let cell: LocationTableViewCell = tableView.dequeueReusableCell(for: indexPath) {
-                cell.configCell(location: locations[indexPath.row])
+                cell.configCell(locationModel: locations[indexPath.row])
                 return cell
             }
         }
@@ -51,11 +51,8 @@ final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITab
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = tableSections[indexPath.section]
-        switch section {
-        case .online(let locations), .local(let locations): 
-            presenterInput?.open(location: locations[indexPath.row])
-        }
+        presenterInput?.open(indexPath: indexPath)
+
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -74,11 +71,10 @@ final class LocationsTableViewDataSource: NSObject, UITableViewDataSource, UITab
         switch section {
         case .online:
             headerCell.headerLabel.text = Strings.onlineTitle.localized()
-        case .local: 
+        case .local:
             headerCell.headerLabel.text = Strings.localTitle.localized()
         }
 
         return headerCell
-
     }
 }

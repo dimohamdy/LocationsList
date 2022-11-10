@@ -9,16 +9,19 @@ import Foundation
 @testable import LocationsList
 import Network
 
-final class MockReachability: Reachability {
+final class MockReachability: Reachable {
 
     let internetConnectionState: NWPath.Status
 
-    override var isConnected: Bool {
+    var isConnected: Bool {
         internetConnectionState == .satisfied
     }
 
     init(internetConnectionState: NWPath.Status) {
         self.internetConnectionState = internetConnectionState
-        super.init()
+    }
+
+    func startNetworkReachabilityObserver() {
+
     }
 }

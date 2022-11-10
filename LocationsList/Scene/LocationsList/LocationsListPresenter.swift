@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol LocationsListPresenterInput: BasePresenterInput {
-    func open(location: Location)
+    func open(indexPath: IndexPath)
     func getLocation()
 }
 
@@ -22,9 +22,10 @@ protocol LocationsListPresenterOutput: BasePresenterOutput {
 final class LocationsListPresenter {
 
     // MARK: Injections
-    private weak var output: LocationsListPresenterOutput?
+    weak var output: LocationsListPresenterOutput?
     let locationsRepository: WebLocationsRepository
     var localLocationRepository: LocalLocationRepository
+    let reachable: Reachable
 
     // internal
 
@@ -32,13 +33,13 @@ final class LocationsListPresenter {
     private var localLocations: [Location] = []
 
     // MARK: Init
-    init(output: LocationsListPresenterOutput,
-         locationsRepository: WebLocationsRepository = WebLocationsRepository(),
-         localLocationRepository: LocalLocationRepository = UserDefaultLocalLocationRepository.shared) {
+    init(locationsRepository: WebLocationsRepository = WebLocationsRepository(),
+         localLocationRepository: LocalLocationRepository = UserDefaultLocalLocationRepository.shared,
+         reachable: Reachable = Reachability.shared) {
 
-        self.output = output
         self.locationsRepository = locationsRepository
         self.localLocationRepository = localLocationRepository
+        self.reachable = reachable
 
         self.localLocationRepository.delegate = self
 
@@ -52,17 +53,16 @@ final class LocationsListPresenter {
 // MARK: - LocationsListPresenterInput
 extension LocationsListPresenter: LocationsListPresenterInput {
 
-    func open(location: Location) {
-        let location = "wikipedia://location?latitude=\(location.lat)&longitude=\(location.long)"
-
-        if let wikipediaURL = URL(string: location) {
+    func open(indexPath: IndexPath) {
+        let location = indexPath.section == 0 ? onlineLocations[indexPath.row] : localLocations[indexPath.row]
+        if let wikipediaURL = URL(string: "wikipedia://location?latitude=\(location.lat)&longitude=\(location.long)") {
             UIApplication.shared.open(wikipediaURL)
         }
     }
 
     func getLocation() {
-        guard Reachability.shared.isConnected else {
-            self.output?.updateData(error: LocationsListError.noInternetConnection)
+        guard reachable.isConnected else {
+            output?.updateData(error: LocationsListError.noInternetConnection)
             return
         }
 
@@ -73,16 +73,20 @@ extension LocationsListPresenter: LocationsListPresenterInput {
                 localLocations = try await localLocationRepository.getLocations()
 
                 let locationsSections = prepareData(onlineLocations: onlineLocations, localLocations: localLocations)
-                output?.hideLoading()
+                DispatchQueue.main.async { [self] in
 
-                if locationsSections.isEmpty {
-                    output?.updateData(error: LocationsListError.noResults)
-                } else {
-                    output?.updateData(tableSections: locationsSections)
+                    output?.hideLoading()
+
+                    if locationsSections.isEmpty {
+                        output?.updateData(error: LocationsListError.noResults)
+                    } else {
+                        output?.updateData(tableSections: locationsSections)
+                    }
                 }
-
             } catch let error {
-                output?.updateData(error: error)
+                DispatchQueue.main.async { [self] in
+                    output?.updateData(error: error)
+                }
             }
         }
     }
@@ -90,18 +94,20 @@ extension LocationsListPresenter: LocationsListPresenterInput {
     @objc
     private func changeInternetConnection(notification: Notification) {
         if notification.name == Notifications.Reachability.notConnected.name {
-            output?.showError(title: Strings.noInternetConnectionTitle.localized(), subtitle: Strings.noInternetConnectionSubtitle.localized())
-            output?.updateData(error: LocationsListError.noInternetConnection)
+            DispatchQueue.main.async { [self] in
+                output?.showError(title: Strings.noInternetConnectionTitle.localized(), subtitle: Strings.noInternetConnectionSubtitle.localized())
+                output?.updateData(error: LocationsListError.noInternetConnection)
+            }
         }
     }
 
     func prepareData(onlineLocations: [Location], localLocations: [Location]) -> [TableViewSectionType] {
         var locationsSections: [TableViewSectionType] = [TableViewSectionType]()
         if !onlineLocations.isEmpty {
-            locationsSections.append(TableViewSectionType.online(locations: onlineLocations))
+            locationsSections.append(TableViewSectionType.online(locations: onlineLocations.map({ $0.locationModel })))
         }
         if !localLocations.isEmpty {
-            locationsSections.append(TableViewSectionType.local(locations: localLocations))
+            locationsSections.append(TableViewSectionType.local(locations: localLocations.map({ $0.locationModel })))
         }
         return locationsSections
     }
@@ -110,6 +116,8 @@ extension LocationsListPresenter: LocationsListPresenterInput {
 extension LocationsListPresenter: LocalLocationRepositoryUpdate {
     func updated(localLocations: [Location]) {
         let locationsSections = prepareData(onlineLocations: onlineLocations, localLocations: localLocations)
-        output?.updateData(tableSections: locationsSections)
+        DispatchQueue.main.async { [self] in
+            output?.updateData(tableSections: locationsSections)
+        }
     }
 }

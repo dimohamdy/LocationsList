@@ -8,10 +8,18 @@
 import Foundation
 import Network
 
-class Reachability {
+protocol Reachable {
+    var isConnected: Bool {get}
+    func startNetworkReachabilityObserver()
+}
 
-    static var shared = Reachability()
-    lazy private var monitor = NWPathMonitor()
+class Reachability: Reachable {
+
+    static let shared = Reachability()
+    private let monitor = NWPathMonitor()
+    private init() {
+
+    }
 
     var isConnected: Bool {
         monitor.currentPath.status == .satisfied

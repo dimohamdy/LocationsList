@@ -10,11 +10,11 @@ import XCTest
 
 final class WebLocationsRepositoryTests: XCTestCase {
     var webLocationsRepository: WebLocationsRepository!
-    
+
     override func tearDown() {
         webLocationsRepository = nil
     }
-    
+
     func test_GetItems_FromAPI() throws {
         runAsyncTest {
             let mockSession = URLSessionMock.createMockSession(fromJsonFile: "data", andStatusCode: 200, andError: nil)
@@ -40,36 +40,3 @@ final class WebLocationsRepositoryTests: XCTestCase {
     }
 }
 
-extension XCTestCase {
-    func runAsyncTest(
-        named testName: String = #function,
-        in file: StaticString = #file,
-        at line: UInt = #line,
-        withTimeout timeout: TimeInterval = 10,
-        test: @escaping () async throws -> Void
-    ) {
-        var thrownError: Error?
-        let errorHandler = { thrownError = $0 }
-        let expectation = expectation(description: testName)
-
-        Task {
-            do {
-                try await test()
-            } catch {
-                errorHandler(error)
-            }
-
-            expectation.fulfill()
-        }
-
-        waitForExpectations(timeout: timeout)
-
-        if let error = thrownError {
-            XCTFail(
-                "Async error thrown: \(error)",
-                file: file,
-                line: line
-            )
-        }
-    }
-}

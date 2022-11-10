@@ -8,10 +8,10 @@
 import UIKit
 
 struct EntryPoint {
-    
+
     func initSplashScreen(window: UIWindow) {
         window.rootViewController = UINavigationController(rootViewController: LocationsListBuilder.viewController())
         window.makeKeyAndVisible()
     }
-    
+
 }

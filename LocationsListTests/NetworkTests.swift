@@ -8,6 +8,8 @@
 @testable import LocationsList
 import XCTest
 
+// Delete unused file test
+
 // final class NetworkTests: XCTestCase {
 //    
 //    func test_GetItems_Success() throws {

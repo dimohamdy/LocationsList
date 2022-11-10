@@ -13,7 +13,7 @@ protocol LocalLocationRepositoryUpdate: AnyObject {
 
 protocol LocalLocationRepository: LocationsRepository {
     var delegate: LocalLocationRepositoryUpdate? { get set }
-    
+
     func save(location: Location)
     func remove(location: Location)
 }

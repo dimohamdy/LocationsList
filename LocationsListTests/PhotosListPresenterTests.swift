@@ -11,6 +11,7 @@ import XCTest
 final class LocationsListPresenterTests: XCTestCase {
     var mockLocationsListPresenterOutput: MockLocationsListPresenterOutput!
     private var userDefaults: UserDefaults!
+    private var reachability: Reachable!
 
     override func setUp() {
         userDefaults = UserDefaults(suiteName: #file)
@@ -21,7 +22,7 @@ final class LocationsListPresenterTests: XCTestCase {
 
     override func tearDown() {
         mockLocationsListPresenterOutput = nil
-        Reachability.shared = MockReachability(internetConnectionState: .satisfied)
+        reachability = MockReachability(internetConnectionState: .satisfied)
     }
 
     func test_getLocations_success() {
@@ -58,7 +59,7 @@ final class LocationsListPresenterTests: XCTestCase {
     }
 
     func test_getLocations_noInternetConnection() {
-        Reachability.shared = MockReachability(internetConnectionState: .unsatisfied)
+        reachability = MockReachability(internetConnectionState: .unsatisfied)
         let presenter = getLocationsListPresenter(fromJsonFile: "noData")
         presenter.getLocation()
         XCTAssertEqual(mockLocationsListPresenterOutput.tableSections.count, 0)
@@ -81,9 +82,10 @@ final class LocationsListPresenterTests: XCTestCase {
         let mockSession = URLSessionMock.createMockSession(fromJsonFile: file, andStatusCode: 200, andError: nil)
         let repository = getMockWebLocationsRepository(mockSession: mockSession)
         let localLocationRepository = UserDefaultLocalLocationRepository(userDefaults: userDefaults)
-        return LocationsListPresenter(output: mockLocationsListPresenterOutput,
-                                      locationsRepository: repository,
+        let presenter = LocationsListPresenter(locationsRepository: repository,
                                       localLocationRepository: localLocationRepository)
+        presenter.output = mockLocationsListPresenterOutput
+        return presenter
     }
 }
 

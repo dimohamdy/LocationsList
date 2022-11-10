@@ -9,7 +9,7 @@
 import XCTest
 
 final class UserDefaultLocalLocationRepositoryTests: XCTestCase {
-    
+
     var localLocationRepository: UserDefaultLocalLocationRepository!
     private var userDefaults: UserDefaults!
 
@@ -19,7 +19,7 @@ final class UserDefaultLocalLocationRepositoryTests: XCTestCase {
         localLocationRepository = UserDefaultLocalLocationRepository(userDefaults: userDefaults)
         _ = localLocationRepository.clearLocations()
     }
-    
+
     func testGetItemsFromAPI() {
         // Act: get data from API .
         localLocationRepository.save(location: Location(name: "Cairo", lat: 12.3333, long: 34.44444))
@@ -29,6 +29,6 @@ final class UserDefaultLocalLocationRepositoryTests: XCTestCase {
         let locations = localLocationRepository.getLocations()
         // Assert: Verify it's have a data.
         XCTAssertEqual(locations.count, 4)
-        
+
     }
 }

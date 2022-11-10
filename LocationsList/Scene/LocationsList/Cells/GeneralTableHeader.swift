@@ -28,17 +28,17 @@ class GeneralTableHeader: UITableViewHeaderFooterView, CellReusable {
 
     private func setupViews() {
         contentView.backgroundColor = .secondarySystemBackground
-        contentView.addSubview(headerLabel)
+        addSubview(headerLabel)
 
         setupConstraints()
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            headerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            headerLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            headerLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            headerLabel.topAnchor.constraint(equalTo: topAnchor),
+            headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            headerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            headerLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

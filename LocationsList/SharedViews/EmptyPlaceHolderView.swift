@@ -15,6 +15,7 @@ enum EmptyPlaceHolderType {
 
 final class EmptyPlaceHolderView: UIView {
 
+    // Replace Conditional with Polymorphism https://refactoring.guru/replace-conditional-with-polymorphism
     var emptyPlaceHolderType: EmptyPlaceHolderType = .noInternetConnection {
         didSet {
             switch emptyPlaceHolderType {

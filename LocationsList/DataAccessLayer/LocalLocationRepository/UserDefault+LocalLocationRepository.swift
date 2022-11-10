@@ -24,7 +24,7 @@ final class UserDefaultLocalLocationRepository: LocalLocationRepository {
         self.userDefaults = userDefaults
         locations = getLocations()
     }
-    
+
     func clearLocations() -> [String] {
         userDefaults.removeObject(forKey: UserDefaultsKey.locations.rawValue)
         return []
@@ -57,7 +57,7 @@ final class UserDefaultLocalLocationRepository: LocalLocationRepository {
             let data = try JSONEncoder().encode(locations)
             userDefaults.set(data, forKey: UserDefaultsKey.locations.rawValue)
         } catch {
-            print(error)
+            print(error) // remove the print 
         }
     }
 }

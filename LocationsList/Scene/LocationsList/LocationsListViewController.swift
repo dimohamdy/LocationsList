@@ -9,7 +9,7 @@ import UIKit
 
 final class LocationsListViewController: UIViewController {
 
-    private(set) var tableDataSource: LocationsTableViewDataSource?
+    private var tableDataSource: LocationsTableViewDataSource?
 
     // MARK: Outlets
     private let locationsTableView: UITableView = {
@@ -26,10 +26,10 @@ final class LocationsListViewController: UIViewController {
         return tableView
     }()
 
-    var presenter: LocationsListPresenterInput?
+    private let presenter: LocationsListPresenterInput
     private let router: LocationsListRouter
 
-    init(withPresenter presenter: LocationsListPresenterInput? = nil, router: LocationsListRouter) {
+    init(presenter: LocationsListPresenterInput, router: LocationsListRouter) {
         self.presenter = presenter
         self.router = router
         super.init(nibName: nil, bundle: nil)
@@ -39,13 +39,13 @@ final class LocationsListViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: View lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         configureNavigationBar()
-        presenter?.getLocation()
+        presenter.getLocation()
     }
 
     // MARK: - Setup UI
@@ -83,7 +83,7 @@ final class LocationsListViewController: UIViewController {
 
     @objc
     private func refresh() {
-        presenter?.getLocation()
+        presenter.getLocation()
     }
 }
 
@@ -91,18 +91,16 @@ final class LocationsListViewController: UIViewController {
 extension LocationsListViewController: LocationsListPresenterOutput {
 
     private func clearTableView() {
-        DispatchQueue.main.async {
-            self.tableDataSource = nil
-            self.locationsTableView.dataSource = nil
-            self.locationsTableView.dataSource = nil
-            self.locationsTableView.reloadData()
-        }
+        tableDataSource = nil
+        locationsTableView.dataSource = nil
+        locationsTableView.dataSource = nil
+        locationsTableView.reloadData()
     }
 
     func emptyState(emptyPlaceHolderType: EmptyPlaceHolderType) {
         clearTableView()
         locationsTableView.setEmptyView(emptyPlaceHolderType: emptyPlaceHolderType, completionBlock: { [weak self] in
-            self?.presenter?.getLocation()
+            self?.presenter.getLocation()
         })
     }
 
@@ -117,17 +115,15 @@ extension LocationsListViewController: LocationsListPresenterOutput {
         }
     }
 
+    // Update sections not the whole table
     func updateData(tableSections: [TableViewSectionType]) {
-        DispatchQueue.main.async {
-            // Clear any placeholder view from tableView
-            self.locationsTableView.restore()
+        // Clear any placeholder view from tableView
+        locationsTableView.restore()
 
-            // Reload the tableView
-            self.tableDataSource = LocationsTableViewDataSource(presenterInput: self.presenter, tableSections: tableSections)
-            self.locationsTableView.dataSource = self.tableDataSource
-            self.locationsTableView.delegate = self.tableDataSource
-            self.locationsTableView.reloadData()
-
-        }
+        // Reload the tableView
+        tableDataSource = LocationsTableViewDataSource(presenterInput: presenter, tableSections: tableSections)
+        locationsTableView.dataSource = tableDataSource
+        locationsTableView.delegate = tableDataSource
+        locationsTableView.reloadData()
     }
 }

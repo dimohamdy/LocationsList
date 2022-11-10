@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04263C4B2904C14B0090791E /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 04263C4A2904C14B0090791E /* SnapshotTesting */; };
+		04263C4D2904C1C90090791E /* XCTestCase+AsyncTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04263C4C2904C1C90090791E /* XCTestCase+AsyncTest.swift */; };
+		04263C502904C2790090791E /* AddLocationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04263C4F2904C2790090791E /* AddLocationViewControllerTests.swift */; };
 		33166CB228EA384D000ACD6B /* LocationsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33166CB128EA384D000ACD6B /* LocationsListRouter.swift */; };
 		333AF57728EE21D600CED93E /* WebPhotosRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF56728EE21D500CED93E /* WebPhotosRepositoryTests.swift */; };
 		333AF57828EE21D600CED93E /* EmptyPlaceHolderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AF56828EE21D500CED93E /* EmptyPlaceHolderViewTests.swift */; };
@@ -70,6 +73,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04263C4C2904C1C90090791E /* XCTestCase+AsyncTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+AsyncTest.swift"; sourceTree = "<group>"; };
+		04263C4F2904C2790090791E /* AddLocationViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewControllerTests.swift; sourceTree = "<group>"; };
 		33166CB128EA384D000ACD6B /* LocationsListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsListRouter.swift; sourceTree = "<group>"; };
 		333AF56728EE21D500CED93E /* WebPhotosRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPhotosRepositoryTests.swift; sourceTree = "<group>"; };
 		333AF56828EE21D500CED93E /* EmptyPlaceHolderViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyPlaceHolderViewTests.swift; sourceTree = "<group>"; };
@@ -137,12 +142,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04263C4B2904C14B0090791E /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04263C442903E0EB0090791E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		04263C4E2904C2700090791E /* SnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				333AF57128EE21D600CED93E /* PhotosListViewControllerTests.swift */,
+				04263C4F2904C2790090791E /* AddLocationViewControllerTests.swift */,
+			);
+			path = SnapshotTests;
+			sourceTree = "<group>";
+		};
 		333AF56928EE21D600CED93E /* DataLoader */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +200,7 @@
 				33CE0A7B28E74D2600B6DC46 /* LocationsList */,
 				33CE0A9228E74D2900B6DC46 /* LocationsListTests */,
 				33CE0A7A28E74D2600B6DC46 /* Products */,
+				04263C442903E0EB0090791E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,11 +241,12 @@
 				333AF56828EE21D500CED93E /* EmptyPlaceHolderViewTests.swift */,
 				333AF57228EE21D600CED93E /* NetworkTests.swift */,
 				333AF57028EE21D600CED93E /* PhotosListPresenterTests.swift */,
-				333AF57128EE21D600CED93E /* PhotosListViewControllerTests.swift */,
+				04263C4E2904C2700090791E /* SnapshotTests */,
 				333AF56D28EE21D600CED93E /* LocationTests.swift */,
 				333AF56F28EE21D600CED93E /* UIView+LoadingTests.swift */,
 				333AF56E28EE21D600CED93E /* UserDefaultLocalLocationRepositoryTests.swift */,
 				333AF56728EE21D500CED93E /* WebPhotosRepositoryTests.swift */,
+				04263C4C2904C1C90090791E /* XCTestCase+AsyncTest.swift */,
 			);
 			path = LocationsListTests;
 			sourceTree = "<group>";
@@ -391,6 +415,9 @@
 				33CE0A9128E74D2900B6DC46 /* PBXTargetDependency */,
 			);
 			name = LocationsListTests;
+			packageProductDependencies = (
+				04263C4A2904C14B0090791E /* SnapshotTesting */,
+			);
 			productName = LocationsListTests;
 			productReference = 33CE0A8F28E74D2900B6DC46 /* LocationsListTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -425,6 +452,7 @@
 			mainGroup = 33CE0A7028E74D2600B6DC46;
 			packageReferences = (
 				33CE0AF528E7816300B6DC46 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
+				04263C492904C14B0090791E /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 33CE0A7A28E74D2600B6DC46 /* Products */;
 			projectDirPath = "";
@@ -524,6 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				333AF58328EE21D600CED93E /* MockReachability.swift in Sources */,
+				04263C4D2904C1C90090791E /* XCTestCase+AsyncTest.swift in Sources */,
 				333AF57B28EE21D600CED93E /* DataLoader.swift in Sources */,
 				333AF57E28EE21D600CED93E /* UIView+LoadingTests.swift in Sources */,
 				333AF58128EE21D600CED93E /* NetworkTests.swift in Sources */,
@@ -532,6 +561,7 @@
 				333AF57828EE21D600CED93E /* EmptyPlaceHolderViewTests.swift in Sources */,
 				333AF57C28EE21D600CED93E /* LocationTests.swift in Sources */,
 				333AF58028EE21D600CED93E /* PhotosListViewControllerTests.swift in Sources */,
+				04263C502904C2790090791E /* AddLocationViewControllerTests.swift in Sources */,
 				333AF57F28EE21D600CED93E /* PhotosListPresenterTests.swift in Sources */,
 				333AF57728EE21D600CED93E /* WebPhotosRepositoryTests.swift in Sources */,
 			);
@@ -800,6 +830,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		04263C492904C14B0090791E /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		33CE0AF528E7816300B6DC46 /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages";
@@ -811,6 +849,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		04263C4A2904C14B0090791E /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04263C492904C14B0090791E /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
 		33CE0AF628E7816300B6DC46 /* SwiftMessages */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 33CE0AF528E7816300B6DC46 /* XCRemoteSwiftPackageReference "SwiftMessages" */;

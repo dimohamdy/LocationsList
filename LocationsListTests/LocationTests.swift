@@ -20,7 +20,7 @@ final class LocationTests: XCTestCase {
 
     func testDecoding_whenMissingRequiredKeys_itThrows() throws {
         try ["lat", "long"].forEach { key in
-            AssertThrowsKeyNotFound(key, decoding: Location.self, from: try location.json(deletingKeyPaths: key))
+            assertThrowsKeyNotFound(key, decoding: Location.self, from: try location.json(deletingKeyPaths: key))
         }
     }
 
@@ -31,7 +31,7 @@ final class LocationTests: XCTestCase {
         XCTAssertEqual(location.long, 4.8339215)
     }
 
-    func AssertThrowsKeyNotFound<T: Decodable>(_ expectedKey: String, decoding: T.Type, from data: Data, file: StaticString = #file, line: UInt = #line) {
+    func assertThrowsKeyNotFound<T: Decodable>(_ expectedKey: String, decoding: T.Type, from data: Data, file: StaticString = #file, line: UInt = #line) {
         XCTAssertThrowsError(try JSONDecoder().decode(decoding, from: data), file: file, line: line) { error in
             if case .keyNotFound(let key, _)? = error as? DecodingError {
                 XCTAssertEqual(expectedKey, key.stringValue, "Expected missing key '\(key.stringValue)' to equal '\(expectedKey)'.", file: file, line: line)

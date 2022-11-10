@@ -8,6 +8,6 @@
 import Foundation
 
 enum TableViewSectionType {
-    case online(locations: [Location])
-    case local(locations: [Location])
+    case online(locations: [UILocationModel])
+    case local(locations: [UILocationModel])
 }

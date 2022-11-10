@@ -47,20 +47,13 @@ extension UIView {
             loadingView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
 
-        layoutIfNeeded()
-
         loadingView.startAnimating()
-
     }
 
     func dismissLoadingIndicator(tag: Tags.Loading = Tags.Loading.defaultLoadingIndicator) {
-
-        DispatchQueue.main.async(execute: { [weak self] in
-            guard let self = self else { return }
-            while self.viewWithTag(tag.rawValue) != nil {
-                self.viewWithTag(tag.rawValue)?.removeFromSuperview()
-            }
-        })
+        while viewWithTag(tag.rawValue) != nil {
+            viewWithTag(tag.rawValue)?.removeFromSuperview()
+        }
     }
 
 }
