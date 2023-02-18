@@ -34,9 +34,3 @@
 
 ## Demo
 ![](Demo.gif)
-
-## Info
-
-Name: Ahmed Abdelaziz
-Website: https://dimohamdy.herokuapp.com/
-Email: dimo.hamdy@gmail.com
